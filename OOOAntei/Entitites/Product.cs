@@ -19,4 +19,5 @@ public class Product : Entity
     public ProductType Type { get; set; }
     public decimal Price { get; set; }
     public bool IsHotOffer { get; set; }
+    public bool IsDeleted { get; set; }
 }
