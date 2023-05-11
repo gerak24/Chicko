@@ -41,6 +41,11 @@ namespace OOOAntei.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Managers",
+                columns: new[] { "Id", "Login", "PassHash" },
+                values: new object[] { new Guid("9eaadc2b-0e74-4a59-8d84-fa23e0100516"), "admin", "1PQxx5d6Nl5GujIuqcgj3ZX0sHzz1jcDPOt9Q8a69W0=" });
         }
 
         /// <inheritdoc />

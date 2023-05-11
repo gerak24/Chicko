@@ -39,6 +39,14 @@ namespace OOOAntei.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Managers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9eaadc2b-0e74-4a59-8d84-fa23e0100516"),
+                            Login = "admin",
+                            PassHash = "1PQxx5d6Nl5GujIuqcgj3ZX0sHzz1jcDPOt9Q8a69W0="
+                        });
                 });
 
             modelBuilder.Entity("OOOAntei.Entitites.Product", b =>

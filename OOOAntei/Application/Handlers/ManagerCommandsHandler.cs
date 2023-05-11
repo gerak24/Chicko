@@ -15,18 +15,18 @@ public class ManagerCommandsHandler
     public ManagerCommandsHandler(DataContext dbContext, IConfiguration configuration)
     {
         DbContext = dbContext;
-        Salt = configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей");
-        Owner = configuration["OwnerLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
+        _salt = configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей");
+        _owner = configuration["OwnerLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
     }
-    private string Salt { get; }
-    private string Owner { get; }
+    private readonly string _salt;
+    private readonly string _owner;
     private DataContext DbContext { get; }
 
     public async Task<string> RegisterAsync(Guid userId, RegisterManagerCommand cmd)
     {
         var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new EntityNotFoundException();
-        if (user.Login != Owner) throw new BusinessException("У вас нет прав регестрировать новых сотрудников");
-        var passHash = Hasher.Create(cmd.Password, Salt);
+        if (user.Login != _owner) throw new BusinessException("У вас нет прав регестрировать новых сотрудников");
+        var passHash = Hasher.Create(cmd.Password, _salt);
         if (DbContext.Managers.Any(x => x.Login == cmd.Login))
             throw new BusinessException("Работник с таким логином уже существует");
         await DbContext.Managers.AddAsync(new Manager(Guid.NewGuid(), cmd.Login, passHash));
@@ -38,7 +38,7 @@ public class ManagerCommandsHandler
     {
         var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Login == cmd.Login);
         if (user == null) throw new BusinessException("Пользователя с таким логином не существует");
-        if (!Hasher.Validate(cmd.Password, Salt, user.PassHash)) throw new BusinessException("Пароль не верен");
+        if (!Hasher.Validate(cmd.Password, _salt, user.PassHash)) throw new BusinessException("Пароль не верен");
         return GetToken(user);
     }
 
@@ -46,10 +46,10 @@ public class ManagerCommandsHandler
     {
         var id = Guid.Parse(userId ?? throw new BusinessException("Возникли проблемы авторизации"));
         var user = DbContext.Managers.FirstOrDefault(x => x.Id == id) ?? throw new EntityNotFoundException("Возникли проблемы авторизации");
-        if (!Hasher.Validate(cmd.OldPassword, Salt, user.PassHash))
+        if (!Hasher.Validate(cmd.OldPassword, _salt, user.PassHash))
             throw new BusinessException("Указан неверный старый пароль");
 
-        user.PassHash = Hasher.Create(cmd.NewPassword, Salt);
+        user.PassHash = Hasher.Create(cmd.NewPassword, _salt);
         DbContext.Managers.Update(user);
         await DbContext.SaveChangesAsync();
         return "Password changed";

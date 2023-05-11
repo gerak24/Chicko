@@ -21,8 +21,6 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
-
         #region Auth
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -84,6 +82,9 @@ public class Startup
                 });
         });
         #endregion
+        
+        services.AddControllers();
+        
     }
 
 

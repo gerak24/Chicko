@@ -9,14 +9,21 @@ public sealed class DataContext : DbContext
 #pragma warning disable CS8618
     public DataContext(DbContextOptions<DataContext> options, IConfiguration configuration) : base(options)
     {
-        var login = configuration["OwnerLogin"] ?? "admin";
-        var passHash = Hasher.Create(configuration["OwnerPassword"] ?? "admin",
-            configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей"));
-        Database.EnsureCreated();
-        if (Managers != null && !Managers.Any())
-        {
-            Managers.Add(new Manager(Guid.NewGuid(), login, passHash));
-        }
+        _ownerLogin = configuration["OwnerLogin"] ??
+                      throw new BusinessException("Не задан лолгин администратора в конфигурации");
+        _ownerPass =
+            Hasher.Create(
+                configuration["OwnerPassword"] ??
+                throw new BusinessException("Не задан лолгин администратора в конфигурации"),
+                configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей"));
+    }
+
+    private readonly string _ownerLogin;
+    private readonly string _ownerPass;
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Manager>().HasData(new {Id = Guid.NewGuid(), Login = _ownerLogin, PassHash = _ownerPass});
     }
 
     public DbSet<Manager> Managers { get; set; }
