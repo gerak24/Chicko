@@ -43,10 +43,32 @@ namespace OOOAntei.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9eaadc2b-0e74-4a59-8d84-fa23e0100516"),
+                            Id = new Guid("59b789cd-3825-4485-9301-e11f3dbb31b9"),
                             Login = "admin",
                             PassHash = "1PQxx5d6Nl5GujIuqcgj3ZX0sHzz1jcDPOt9Q8a69W0="
                         });
+                });
+
+            modelBuilder.Entity("OOOAntei.Entitites.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Customer")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Sum")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OOOAntei.Entitites.Product", b =>
@@ -82,6 +104,46 @@ namespace OOOAntei.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("OOOAntei.Entitites.Orders.Order", b =>
+                {
+                    b.OwnsMany("OOOAntei.Entitites.Orders.OrderProduct", "Products", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer");
+
+                            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<int>("Id"));
+
+                            b1.Property<decimal?>("Amount")
+                                .HasColumnType("numeric");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<decimal>("Price")
+                                .HasColumnType("numeric");
+
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Type")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("OrderId", "Id");
+
+                            b1.ToTable("OrderProduct");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OOOAntei.Application.Helpers;
 using OOOAntei.Entitites;
+using OOOAntei.Entitites.Orders;
 
 namespace OOOAntei.Data;
 
@@ -24,8 +25,10 @@ public sealed class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<Manager>().HasData(new {Id = Guid.NewGuid(), Login = _ownerLogin, PassHash = _ownerPass});
+        builder.Entity<Order>().OwnsMany(x => x.Products);
     }
 
     public DbSet<Manager> Managers { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Order> Orders { get; set; }
 }
