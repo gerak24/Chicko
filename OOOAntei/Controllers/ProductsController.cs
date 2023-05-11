@@ -23,8 +23,8 @@ public class ProductsController : ApiController
             return BadRequest(ModelState);
 
         return Ok(Handler.GetProducts());
-    }   
-    
+    }
+
     [HttpGet("[action]")]
     [AllowAnonymous]
     public IActionResult GetDeleted()
@@ -35,7 +35,6 @@ public class ProductsController : ApiController
         return Ok(Handler.GetDeletedProducts());
     }
 
-    
     [HttpPost]
     public async Task<IActionResult> SaveProduct(CreateProductCommand cmd)
     {

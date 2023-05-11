@@ -100,6 +100,8 @@ public class Startup
 
         app.UseRouting();
 
+        app.UseProblemDetails();
+        
         app.UseAuthentication();
 
         app.UseAuthorization();
