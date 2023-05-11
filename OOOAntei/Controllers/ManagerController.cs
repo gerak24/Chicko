@@ -16,13 +16,13 @@ public class ManagerController : ApiController
     private ManagerCommandsHandler Handler { get; }
 
     [HttpPost("[action]")]
-    [AllowAnonymous]
     public async Task<IActionResult> Register(RegisterManagerCommand cmd)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(await Handler.RegisterAsync(cmd));
+        var userId = Guid.Parse(HttpContext.User.Identity?.Name ?? throw new BusinessException("Возникли проблемы авторизации"));
+        return Ok(await Handler.RegisterAsync(userId, cmd));
     }
 
     [HttpPost]

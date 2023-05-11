@@ -7,7 +7,7 @@ namespace OOOAntei.Application.Handlers;
 
 public class ProductCommandsHandler
 {
-    public ProductCommandsHandler(DataContext dbContext, IConfiguration configuration)
+    public ProductCommandsHandler(DataContext dbContext)
     {
         DbContext = dbContext;
     }
@@ -17,7 +17,7 @@ public class ProductCommandsHandler
     public async Task<string> UpdateProduct(UpdateProductCommand cmd)
     {
         var product = await DbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
-                      throw new NotImplementedException();
+                      throw new BusinessException("Продукт не найден");
 
         product.Name = cmd.Name ?? product.Name;
         product.Description = cmd.Description ?? product.Description;
@@ -28,13 +28,13 @@ public class ProductCommandsHandler
         DbContext.Update(product);
 
         await DbContext.SaveChangesAsync();
-        return "Product updated";
+        return "Продукт обновлен";
     }
 
     public async Task<string> DeleteProduct(DeleteProductCommand cmd)
     {
         var product = await DbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
-                      throw new NotImplementedException();
+                      throw new BusinessException("Продукт не найден");
 
         switch (cmd.IsSoftDelete)
         {
@@ -49,7 +49,7 @@ public class ProductCommandsHandler
         }
 
         await DbContext.SaveChangesAsync();
-        return "Product deleted";
+        return "Продукт удален";
     }
 
 
@@ -60,11 +60,16 @@ public class ProductCommandsHandler
             cmd.Price, cmd.IsHotOffer));
 
         await DbContext.SaveChangesAsync();
-        return "Product created";
+        return "Продукт создан";
     }
 
+    public IEnumerable<Product> GetDeletedProducts()
+    {
+        return DbContext.Products.Where(x => x.IsDeleted == true);
+    }
+    
     public IEnumerable<Product> GetProducts()
     {
-        return DbContext.Products;
+        return DbContext.Products.Where(x => x.IsDeleted != true);
     }
 }

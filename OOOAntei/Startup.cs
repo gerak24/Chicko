@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Net;
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OOOAntei.Data;
@@ -59,6 +62,27 @@ public class Startup
             options.KnownNetworks.Clear();
         });
 
+        #endregion
+
+        #region ProblemDetails
+
+        services.AddProblemDetails(options =>
+        {
+            options.Map<BusinessException>(exception =>
+                new ProblemDetails
+                {
+                    Title = exception.Message,
+                    Status = (int) HttpStatusCode.BadRequest,
+                    Type = "https://schema.Antei.api/problems",
+                });
+            options.Map<EntityNotFoundException>(exception =>
+                new ProblemDetails
+                {
+                    Title = exception.Message,
+                    Status = (int) HttpStatusCode.NotFound,
+                    Type = "https://schema.Antei.api/problems/404"
+                });
+        });
         #endregion
     }
 

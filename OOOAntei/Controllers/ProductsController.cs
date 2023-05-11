@@ -8,9 +8,9 @@ namespace OOOAntei.Controllers;
 
 public class ProductsController : ApiController
 {
-    public ProductsController(DataContext dbContext, IConfiguration configuration)
+    public ProductsController(DataContext dbContext)
     {
-        Handler = new ProductCommandsHandler(dbContext, configuration);
+        Handler = new ProductCommandsHandler(dbContext);
     }
 
     private ProductCommandsHandler Handler { get; }
@@ -23,8 +23,19 @@ public class ProductsController : ApiController
             return BadRequest(ModelState);
 
         return Ok(Handler.GetProducts());
+    }   
+    
+    [HttpGet("[action]")]
+    [AllowAnonymous]
+    public IActionResult GetDeleted()
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(Handler.GetDeletedProducts());
     }
 
+    
     [HttpPost]
     public async Task<IActionResult> SaveProduct(CreateProductCommand cmd)
     {

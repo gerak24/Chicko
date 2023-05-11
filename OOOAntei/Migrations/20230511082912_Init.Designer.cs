@@ -12,7 +12,7 @@ using OOOAntei.Data;
 namespace OOOAntei.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230510130650_Init")]
+    [Migration("20230511082912_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -42,6 +42,41 @@ namespace OOOAntei.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("OOOAntei.Entitites.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsHotOffer")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }
