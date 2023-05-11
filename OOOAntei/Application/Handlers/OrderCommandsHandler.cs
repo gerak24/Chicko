@@ -1,6 +1,5 @@
 ﻿using OOOAntei.Application.Commands.Order;
 using OOOAntei.Data;
-using OOOAntei.Entitites;
 using OOOAntei.Entitites.Orders;
 
 namespace OOOAntei.Application.Handlers;
