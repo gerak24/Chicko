@@ -13,6 +13,6 @@ const HeaderButt = ({title,route,children}) => {
 };
 
 function HighlightActive(isActive) {
-    return isActive ? `${styles.header_button_active} ${styles.header_button} ${styles.header_text}` : `${styles.header_button} ${styles.header_text}`;
+    return isActive ? `${styles.header_button_active} ${styles.header_button} ${styles.header_text}` : `${styles.header_button_wait} ${styles.header_button} ${styles.header_text}`;
 }
 export default HeaderButt;
