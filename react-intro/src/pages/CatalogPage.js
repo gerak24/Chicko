@@ -1,14 +1,13 @@
 import React from 'react';
 import Header from "../Components/Header/Header";
 
-
-const HomePage = () => {
+const CatalogPage = () => {
     return (
         <div>
             <Header/>
-            Это главная страница
+            типа Каталог
         </div>
     );
 };
 
-export default HomePage;
+export default CatalogPage;

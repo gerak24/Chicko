@@ -1,3 +1,9 @@
+@font-face {
+  font-family: Tilda-Sans; /* Имя шрифта */
+  src: url(fonts/TildaSans-Semibold.woff); /* Путь к файлу со шрифтом */
+}
+
 @mixin big_text {
   font-size: 30px;
+  font-family: Tilda-Sans, sans-serif;
 }

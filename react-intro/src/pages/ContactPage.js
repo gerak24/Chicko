@@ -2,13 +2,13 @@ import React from 'react';
 import Header from "../Components/Header/Header";
 
 
-const HomePage = () => {
+const ContactPage = () => {
     return (
         <div>
             <Header/>
-            Это главная страница
+            Тут типа контакты
         </div>
     );
 };
 
-export default HomePage;
+export default ContactPage;

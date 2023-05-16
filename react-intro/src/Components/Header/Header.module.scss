@@ -1,8 +1,43 @@
 @import "../../styles/Mixins";
 @import "../../styles/Variables";
 
-.lol{
+.header {
+  background-color: #2d2d2d;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_content_wrapper {
+  height: 100%;
+  width: 90vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header_button {
+  display: flex;
+  align-items: center;
+  padding-inline: 5px;
+  height: 100%;
+}
+.header_button_active{
+  background-color: #c73030;
+}
+
+.header_button:hover{
+  background-color: #262626;
+}
+
+.header_text {
+  text-decoration: none;
+  color: rgba(206, 206, 206, 0.84);
   @include big_text;
-  color: $primary_color;
-  background-color: red;
+}
+
+.header_image {
+  height: 70%;
+  border-radius: 50%;
+  padding-right: 5px;
 }
