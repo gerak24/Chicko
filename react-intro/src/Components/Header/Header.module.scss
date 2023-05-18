@@ -12,7 +12,7 @@
 
 .header_content_wrapper {
   height: 100%;
-  width: 90vw;
+  width: 90%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -37,7 +37,7 @@
 
 .header_text {
   text-decoration: none;
-  color: rgba(206, 206, 206, 0.84);
+  @include light_gray_font;
   @include big_text;
 }
 
@@ -45,4 +45,9 @@
   height: 70%;
   border-radius: 50%;
   padding-right: 5px;
+}
+@media (max-width: 400px) {
+  .header_content_wrapper{
+    width: 99%;
+  }
 }

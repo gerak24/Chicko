@@ -1,7 +1,31 @@
-.footer{
+@import "../../styles/Mixins";
+
+.footer {
   background-color: #282828;
   height: 120px;
   width: 100%;
   bottom: 0;
   position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.content_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+.workTime {
+  @include medium_text;
+  @include light_gray_font;
+  text-align: left;
+}
+
+@media (max-width: 500px) {
+  .content_wrapper {
+    width: 97%
+  }
 }
