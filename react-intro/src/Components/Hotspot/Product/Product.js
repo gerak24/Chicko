@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './Product.module.scss'
 
-const Product = () => {
+const Product = ({image,name,description,price}) => {
     return (
         <div className={styles.content_wrapper}>
-афывафыв
+            <img src={image} alt='ooops'></img>
+            <div>{name}</div>
+            <div>{description}</div>
+            <div>{price}</div>
         </div>
     );
 };
