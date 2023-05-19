@@ -23,15 +23,16 @@
   padding-inline: 5px;
   height: 100%;
 }
-.header_button_active{
+
+.header_button_active {
   background-color: #c73030;
 }
 
-.header_button_active:hover{
+.header_button_active:hover {
   background-color: #ce4c4c;
 }
 
-.header_button_wait:hover{
+.header_button_wait:hover {
   background-color: #3f3f3f;
 }
 
@@ -46,8 +47,9 @@
   border-radius: 50%;
   padding-right: 5px;
 }
+
 @media (max-width: 400px) {
-  .header_content_wrapper{
+  .header_content_wrapper {
     width: 99%;
   }
 }
