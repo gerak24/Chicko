@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss'
+import {NavLink} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -11,6 +12,9 @@ const Footer = () => {
                     Перерыв: с 12.00 до 13.00<br/>
                     Суббота, воскресенье: выходной<br/>
                 </div>
+                <NavLink to={'/cart'}>
+                    <i className="fas fa-shopping-cart"></i>
+                </NavLink>
                 <div className={styles.workTime}>
                     ООО «Антей»: запчасти для комбайнов, <br/>
                     ремонт комбайнов, дефектовка комбайнов,<br/>
@@ -19,7 +23,8 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default Footer;

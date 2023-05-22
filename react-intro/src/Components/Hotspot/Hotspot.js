@@ -3,41 +3,30 @@ import styles from './Hotspot.module.scss'
 import Product from "./Product/Product";
 
 const Hotspot = () => {
-    return (
-        <div className={styles.hotspot}>
+    const products = GetHotProduction()
+    return (<div className={styles.hotspot}>
             <div className={styles.hotspot_title}>Спецпредложения</div>
-            <div>slider</div>
+            <div className={styles.slider}>slider</div>
             <div className={styles.product_content_wrapper}>
-               <Product/>
+                {products.map(item => <Product key={item.id} item={item}/>)}
             </div>
-        </div>
-    );
+        </div>);
 };
 
-/*
-function GetProductionHtml() {
-    const results = [];
-    let json = GetHotProduction();
-    Object.keys(json).forEach(function (key) {
-        results.push(json[key]);
-    })
-    return
-}
-
 function GetHotProduction() {
-    return json([
-        {
-            "Name": "Сало",
-            "Description": "Сало сальное красиво нарезанное",
-            "Img": "Сало",
-            "Price": 100.00
-        },
-        {
-            "Name": "Кот",
-            "Description": "Животное, мохнатое",
-            "Img": "",
-            "Price": 1499.99
-        }])
-}*/
-
+    return [{
+        id: 0,
+        name: "Сало",
+        description: "Сало сальное красиво нарезанное.Разработать программу для автоматизации процесса контроля качества продукции и оптимизации производственных процессов. Программа должна иметь функциональность для мониторинга соответствия продукции требованиям качества, анализировать данные и выделять возможные несоответствия, сигнализировать о превышении лимитов по параметрам качества и помогать быстро выявлять причину недостатков. Программа также должна содержать модуль для управления базой данных, в которой хранятся данные о качестве продукции и результаты испытаний, и обеспечивать мгновенный доступ к релевантной информации. Кроме того, программа должна иметь возможность автоматизировать производственный процесс, предотвращая допущение ошибок и несоответствий на ранних стадиях производства, что поможет повысить эффективность работы и уменьшить вероятность отклонений в качестве продукции.",
+        image: "https://ideireceptov.ru/wp-content/uploads/2021/11/2c05aa81578cdb949c038928649c4cc7.jpg",
+        price: 100.00
+    }]
+}
+/*, {
+        id: 1,
+        name: "Кот",
+        description: "Животное, мохнатое",
+        image: "https://mobimg.b-cdn.net/v3/fetch/37/37a4388d1f27bf3cb994125648f8ed81.jpeg",
+        price: 1499.99
+    }*/
 export default Hotspot;

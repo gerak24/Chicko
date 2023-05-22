@@ -8,6 +8,11 @@
   position: absolute;
   display: flex;
   justify-content: center;
+  i {
+    font-size: 4rem;
+    line-height: normal;
+    color: #c73030;
+  }
 }
 
 .content_wrapper {
