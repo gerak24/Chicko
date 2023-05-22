@@ -18,6 +18,8 @@
 
 .product_title {
   @include big_text;
+  padding-top: 5px;
+  padding-bottom: 5px;
   display: flex;
   justify-content: left;
   width: 90%;
@@ -32,7 +34,7 @@
   overflow: auto;
   border-radius: 5px;
   border: 1px solid #3f3f3f;
-  padding: 3px;
+  padding: 5px;
 }
 
 .product_description::-webkit-scrollbar {

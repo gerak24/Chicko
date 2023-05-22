@@ -3,7 +3,6 @@ import styles from './Header.module.scss'
 import image from '../../Data/teacup.png';
 import HeaderButt from "./HeaderButt";
 
-
 const Header = () => {
     return (
         <div className={styles.header}>
@@ -17,7 +16,5 @@ const Header = () => {
         </div>
     );
 };
-
-
 
 export default Header;

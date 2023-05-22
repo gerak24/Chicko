@@ -14,16 +14,12 @@
 
 .hotspot_title {
   @include big_text;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   height: 10%;
 }
-.slider{
-  height: 5%;
-}
-
 .product_content_wrapper {
   display: flex;
-  height: 85%;
+  height: 90%;
   width: 100%;
   flex-direction: column;
 }
