@@ -3,6 +3,31 @@
   src: url(fonts/TildaSans-Semibold.woff); /* Путь к файлу со шрифтом */
 }
 
+@mixin content{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin content_title{
+  @include huge_text;
+  color: #c51818;
+  font-style: italic;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #c51818;
+}
+
+@mixin content_descr{
+  @include big_text;
+  @include dark_gray_font;
+  line-height: 2.75rem;
+}
+
+@mixin huge_text {
+  font-size: 2.25rem;
+  font-family: Tilda-Sans, sans-serif;
+}
+
 @mixin big_text {
   font-size: 1.875rem;
   font-family: Tilda-Sans, sans-serif;
@@ -16,6 +41,10 @@
 @mixin small_text{
   font-size: 0.75rem;
   font-family: Tilda-Sans, sans-serif;
+}
+
+@mixin dark_gray_font{
+  color: #282828;
 }
 
 @mixin light_gray_font{

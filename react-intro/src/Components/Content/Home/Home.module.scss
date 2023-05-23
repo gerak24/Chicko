@@ -1,0 +1,78 @@
+@import "../../../styles/Mixins";
+
+.home {
+  @include content
+}
+
+.title {
+  @include content_title;
+  text-align: center;
+}
+
+.description {
+  @include content_descr;
+  line-height: 2.5rem;
+}
+
+.map_wrapper {
+  width: 100%;
+  height: 40vh;
+  border-radius: 5px;
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.img_column {
+  max-width: 560px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.img_zoomable {
+  cursor: zoom-in;
+  background: center center / cover no-repeat;
+  width: 100%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.left_img {
+  height: 660px;
+}
+
+.right_img {
+  width: 100%;
+  height: 320px;
+}
+
+.popup_img {
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: none;
+}
+
+.pop_visible {
+  visibility: visible;
+  animation: show_popup 2s ease;
+}
+
+.popup {
+  height: 80vh;
+  width: 80vw;
+  visibility: hidden;
+  position: fixed;
+  background-color: #3f3f3f;
+  align-self: center;
+  top: calc(100px + 5vh);
+  border-radius: 5px;
+  border: #111111 solid;
+  z-index: 100;
+}

@@ -1,0 +1,28 @@
+.content_wrapper{
+  width: inherit;
+  padding: 5px;
+  margin: 5px;
+  background-color: #e1dfdf;
+  height: calc(100% - 20px);
+  overflow: auto;
+  border-radius: 5px;
+}
+
+.content_wrapper::-webkit-scrollbar {
+  width: 3px;
+  opacity: 0.5;
+}
+
+.content_wrapper::-webkit-scrollbar-track {
+  margin: auto;
+  background: #3F3F3F82;
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+.content_wrapper::-webkit-scrollbar-thumb {
+  background-color: #c73030;
+  border-radius: 5px;
+  height: 30px;
+  opacity: 0.5;
+}

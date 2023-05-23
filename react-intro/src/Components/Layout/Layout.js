@@ -1,11 +1,11 @@
 import React from 'react';
-
+import styles from './Layout.module.scss'
 
 const Layout = ({children}) => {
     return (
-        <body>
+        <div className={styles.layout}>
             {children}
-        </body>
+        </div>
     );
 };
 
