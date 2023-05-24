@@ -1,0 +1,11 @@
+@import "../../../styles/Mixins";
+
+.cartInfo{
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+.cartInfo_title{
+  @include big_text;
+}

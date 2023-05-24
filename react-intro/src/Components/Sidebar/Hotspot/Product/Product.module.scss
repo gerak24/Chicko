@@ -1,4 +1,4 @@
-@import  "../../../../styles/Mixins";
+@import "../../../../styles/Mixins";
 
 .content_wrapper {
   height: 100%;
@@ -69,11 +69,23 @@
   align-items: center;
   border-right: 1px solid black;
   display: flex;
+  transition: 0.2s all;
 
   i {
     font-size: 1.6rem;
     line-height: normal
   }
+}
+
+.product_button:hover {
+  background-color: #ce4c4c;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.product_button:active {
+
+  transform: scale(0.98);
 }
 
 .product_button_text {
@@ -100,19 +112,24 @@
   .content_wrapper {
     flex-direction: row;
   }
-  .product_buttons_wrapper{
+  .product_buttons_wrapper {
     border-radius: 8px;
   }
-  .product_price{
+  .product_price {
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
   }
-  .product_title{
+
+  .product_description {
+    width: 100%;
+    padding: 0 0 0 2px;
+  }
+  .product_title {
     text-align: center;
     justify-content: center;
     height: min-content;
   }
-  .product_image{
+  .product_image {
     width: 90%;
   }
 

@@ -4,9 +4,9 @@ import Footer from "../Components/Footer/Footer";
 import Layout from "../Components/Layout/Layout";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Logo from "../Components/Logo/Logo";
-import Hotspot from "../Components/Sidebar/Hotspot/Hotspot";
 import Content from "../Components/Content/Content";
 import Main from "../Components/Main/Main";
+import CartInfo from "../Components/Sidebar/CartInfo/CartInfo";
 
 const CatalogPage = () => {
     return (
@@ -15,7 +15,7 @@ const CatalogPage = () => {
             <Main>
                 <Sidebar>
                     <Logo/>
-                    <Hotspot/>
+                    <CartInfo/>
                 </Sidebar>
                 <Content>
                     А тут типа товары карточками накидать
