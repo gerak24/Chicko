@@ -8,24 +8,41 @@ import Logo from "../Components/Logo/Logo";
 import Main from "../Components/Main/Main";
 import Content from "../Components/Content/Content";
 import Contacts from "../Components/Content/Contacts/Contacts";
+import {useWindowSize} from "../App";
 
 
 const ContactPage = () => {
-    return (
-        <Layout>
-            <Header/>
-            <Main>
-                <Sidebar>
-                    <Logo/>
-                    <Hotspot/>
-                </Sidebar>
-                <Content>
-                  <Contacts/>
-                </Content>
-            </Main>
-            <Footer/>
-        </Layout>
-    );
+    const [width] = useWindowSize();
+    if (width > 640) {
+        return (
+            <Layout>
+                <Header/>
+                <Main>
+                    <Sidebar>
+                        <Logo/>
+                        <Hotspot/>
+                    </Sidebar>
+                    <Content>
+                        <Contacts/>
+                    </Content>
+                </Main>
+                <Footer/>
+            </Layout>
+        );
+    } else
+        return (
+            <Layout>
+                <Header/>
+                <Main>
+                    <Content>
+                        <Sidebar>
+                            <Hotspot/>
+                        </Sidebar>
+                        <Contacts/>
+                    </Content>
+                </Main>
+                <Footer/>
+            </Layout>);
 };
 
 export default ContactPage;

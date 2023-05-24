@@ -26,3 +26,10 @@
   height: 30px;
   opacity: 0.5;
 }
+
+@media (max-width: 640px) {
+  .content_wrapper{
+    width: 97%;
+    margin: 5px 0;
+  }
+}

@@ -2,3 +2,11 @@
   height: 100%;
   width: 100%;
 }
+
+@media (max-width: 640px) {
+  .slider{
+    padding: 3px;
+    border-bottom: #3f3f3f 1px dashed;
+    border-top: #3f3f3f 1px dashed;
+  }
+}

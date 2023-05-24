@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
   width: 300px;
   margin: 5px 10px;
   padding: 5px;
@@ -7,4 +7,14 @@
   flex-direction: column;
   border-radius: 10px;
   background-color: #e1dfdf;
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    margin: 5px 0 0;
+    padding: 0;
+    width: 100%;
+    height: min-content;
+    flex-direction: row;
+  }
 }

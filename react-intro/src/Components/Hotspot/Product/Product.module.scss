@@ -69,6 +69,7 @@
   align-items: center;
   border-right: 1px solid black;
   display: flex;
+
   i {
     font-size: 1.6rem;
     line-height: normal
@@ -89,4 +90,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.title_block {
+  width: 46%;
+}
+
+@media (max-width: 640px) {
+  .content_wrapper {
+    flex-direction: row;
+  }
+  .product_buttons_wrapper{
+    border-radius: 8px;
+  }
+  .product_price{
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .product_title{
+    text-align: center;
+    justify-content: center;
+    height: min-content;
+  }
+  .product_image{
+    width: 90%;
+  }
+
 }

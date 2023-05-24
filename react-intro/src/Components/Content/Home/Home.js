@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Home.module.scss'
+import ImageStand from "./ImageStand/ImageStand";
 
 const Home = () => {
     return (
@@ -11,23 +12,7 @@ const Home = () => {
                 Компания использует только самые современные технологии и материалы, что позволяет достичь высокого
                 качества финального продукта и максимальной устойчивости конструкции к внешним воздействиям.<br/>
                 <br/>
-
-                <div className={styles.image_container}>
-                    <div className={styles.img_column}>
-                        <img onClick={popup(true)} className={`${styles.img_zoomable} ${styles.left_img}`}
-                             src="../../../Data/content1.jpg" alt="Ooops"/>
-                    </div>
-                    <div className={styles.img_column}>
-                        <img onClick={popup(true)} className={`${styles.img_zoomable} ${styles.left_img}`}
-                             src="../../../Data/content2.jpg" alt="Ooops"/>
-                        <img onClick={popup(true)} className={`${styles.img_zoomable} ${styles.left_img}`}
-                             src="../../../Data/content3.jpg" alt="Ooops"/>
-                    </div>
-                    <div onClick={popup(false)} id="popup" className={styles.popup}>
-                        <div onClick={popup(false)} id="popup_img" className={styles.popup_img}></div>
-                    </div>
-                </div>
-
+                <ImageStand/>
                 Наши каркасные дома являются самыми долговечными и экологически чистыми постройками, что делает их
                 привлекательными для тех, кто ценит комфорт и заботится о здоровье своей семьи. Компания-застройщик
                 каркасных домов предлагает широкий спектр моделей и планировок, которые позволяют удовлетворить
@@ -42,17 +27,5 @@ const Home = () => {
         </div>
     );
 };
-
-function popup(popswitch) {
-    let popup = document.getElementById("popup");
-    let img = document.getElementById("popup_img");
-    if (popswitch === true) {
-        img.style.setProperty("background-image", `url(${this.src})`);
-        popup.classList.add("pop_visible");
-    } else if (popswitch === false) {
-        popup.classList.remove("pop_visible")
-    }
-}
-
 
 export default Home;

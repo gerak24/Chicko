@@ -1,4 +1,5 @@
 import React from 'react';
+import {useWindowSize} from '../App'
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import Layout from "../Components/Layout/Layout";
@@ -11,21 +12,36 @@ import Home from "../Components/Content/Home/Home";
 
 
 const HomePage = () => {
-    return (
-        <Layout>
-            <Header/>
-            <Main>
-                <Sidebar>
-                    <Logo/>
-                    <Hotspot/>
-                </Sidebar>
-                <Content>
-                   <Home/>
-                </Content>
-            </Main>
-            <Footer/>
-        </Layout>
-    );
+    const [width] = useWindowSize();
+    if (width > 640) {
+        return (
+            <Layout>
+                <Header/>
+                <Main>
+                    <Sidebar>
+                        <Logo/>
+                        <Hotspot/>
+                    </Sidebar>
+                    <Content>
+                        <Home/>
+                    </Content>
+                </Main>
+                <Footer/>
+            </Layout>
+        );
+    } else
+        return (
+            <Layout>
+                <Header/>
+                <Main>
+                    <Content>
+                        <Sidebar>
+                            <Hotspot/>
+                        </Sidebar>
+                        <Home/>
+                    </Content>
+                </Main>
+                <Footer/>
+            </Layout>);
 };
-
 export default HomePage;

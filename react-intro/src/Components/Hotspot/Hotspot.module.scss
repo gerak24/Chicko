@@ -18,9 +18,26 @@
   padding-bottom: 10px;
   height: 10%;
 }
+
 .product_content_wrapper {
   display: flex;
   height: 90%;
   width: 100%;
   flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .hotspot {
+    width: 100%;
+    border: none;
+    height: min-content;
+  }
+  .product_content_wrapper {
+    height: min-content;
+  }
+  .hotspot_title {
+    padding-bottom: 5px;
+    height: min-content;
+    line-height: 1.9rem;
+  }
 }
