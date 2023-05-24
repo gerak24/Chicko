@@ -3,7 +3,7 @@ import {useWindowSize} from '../App'
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import Layout from "../Components/Layout/Layout";
-import Hotspot from "../Components/Hotspot/Hotspot";
+import Hotspot from "../Components/Sidebar/Hotspot/Hotspot";
 import Main from "../Components/Main/Main";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Logo from "../Components/Logo/Logo";

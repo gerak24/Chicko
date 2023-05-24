@@ -4,7 +4,7 @@ import Footer from "../Components/Footer/Footer";
 import Layout from "../Components/Layout/Layout";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Logo from "../Components/Logo/Logo";
-import Hotspot from "../Components/Hotspot/Hotspot";
+import Hotspot from "../Components/Sidebar/Hotspot/Hotspot";
 import Content from "../Components/Content/Content";
 import Main from "../Components/Main/Main";
 

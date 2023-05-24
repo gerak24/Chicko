@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Product.module.scss'
-import {useWindowSize} from "../../../App";
+import {useWindowSize} from "../../../../App";
 
 const Product = ({item}) => {
     const {id, name, description, price, image} = item
