@@ -50,3 +50,27 @@
 @mixin light_gray_font{
   color: #CECECED6;
 }
+
+@mixin popup {
+  animation: show_popup 2s ease;
+  overflow: hidden;
+  height: 90vh;
+  width: 90vw;
+  position: fixed;
+  background-color: #3f3f3f;
+  align-self: center;
+  top: 5vh;
+  left: 5vw;
+  border-radius: 5px;
+  border: #111111 solid;
+  z-index: 100;
+}
+
+@keyframes show_popup {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,3 +1,5 @@
+@import "../../../../styles/Mixins";
+
 .popup_img {
   width: 100%;
   height: 100%;
@@ -7,26 +9,9 @@
   transition: none;
 }
 
-.pop_visible {
-  visibility: visible;
-  animation: show_popup 2s ease;
+.popup{
+  @include popup
 }
-
-.popup {
-  animation: show_popup 2s ease;
-  overflow: hidden;
-  height: 90vh;
-  width: 90vw;
-  position: fixed;
-  background-color: #3f3f3f;
-  align-self: center;
-  top: 5vh;
-  left: 5vw;
-  border-radius: 5px;
-  border: #111111 solid;
-  z-index: 100;
-}
-
 
 .image_container {
   display: flex;
@@ -57,15 +42,6 @@
 .right_img {
   width: 100%;
   height: 320px;
-}
-
-@keyframes show_popup {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 @media (max-width: 1200px) {

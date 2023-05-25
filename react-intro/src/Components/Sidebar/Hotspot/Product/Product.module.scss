@@ -108,6 +108,11 @@
   width: 46%;
 }
 
+.popup{
+  @include popup;
+  position: absolute;
+}
+
 @media (max-width: 640px) {
   .content_wrapper {
     flex-direction: row;
