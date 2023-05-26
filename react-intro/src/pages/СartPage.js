@@ -18,12 +18,12 @@ const CatalogPage = () => {
                     <CartInfo/>
                 </Sidebar>
                 <Content>
-                    А тут типа товары карточками накидать
+                    Тут типа каталог карточек
                 </Content>
             </Main>
             <Footer/>
         </Layout>
-    );
+);
 };
 
 export default CatalogPage;

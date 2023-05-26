@@ -1,8 +1,8 @@
-@import "../../styles/Mixins";
+@import "../../../../styles/Mixins";
 
 .content_wrapper {
   height: 100%;
-  width: 100%;
+  width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,11 +23,12 @@
   padding-top: 5px;
   padding-bottom: 5px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   width: 90%;
 }
 
 .product_description {
+  margin-top: 5px;
   @include medium_text;
   display: flex;
   justify-content: left;
@@ -110,34 +111,8 @@
   width: 46%;
 }
 
-.popup{
+.popup {
   @include popup;
   position: absolute;
 }
 
-@media (max-width: 640px) {
-  .content_wrapper {
-    flex-direction: row;
-  }
-  .product_buttons_wrapper {
-    border-radius: 8px;
-  }
-  .product_price {
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  .product_description {
-    width: 100%;
-    padding: 0 0 0 2px;
-  }
-  .product_title {
-    text-align: center;
-    justify-content: center;
-    height: min-content;
-  }
-  .product_image {
-    width: 90%;
-  }
-
-}

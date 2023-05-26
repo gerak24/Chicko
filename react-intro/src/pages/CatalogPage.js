@@ -4,6 +4,7 @@ import Footer from "../Components/Footer/Footer";
 import Layout from "../Components/Layout/Layout";
 import Main from "../Components/Main/Main";
 import Content from "../Components/Content/Content";
+import Catalog from "../Components/Content/Catalog/Catalog";
 
 const CatalogPage = () => {
     return (
@@ -11,7 +12,7 @@ const CatalogPage = () => {
             <Header/>
             <Main>
                 <Content>
-                    Тут типа должен быть каталогг
+                    <Catalog/>
                 </Content>
             </Main>
             <Footer/>

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import styles from './Product.module.scss'
+import styles from './HotspotProduct.module.scss'
 import {useDispatch} from 'react-redux'
-import {addToCart} from '../../features/cart/cartSlice'
-import {useWindowSize} from "../../App";
+import {addToCart} from '../../../../features/cart/cartSlice'
+import {useWindowSize} from "../../../../App";
 import Popup from "./Popup/Popup";
 
-const Product = ({item}) => {
+const HotspotProduct = ({item}) => {
     const {id, name, description, price, image} = item
     const dispath = useDispatch();
     const [open, setOpen] = useState(false);
@@ -55,4 +55,4 @@ const Product = ({item}) => {
             </div>
         );
 };
-export default Product;
+export default HotspotProduct;
