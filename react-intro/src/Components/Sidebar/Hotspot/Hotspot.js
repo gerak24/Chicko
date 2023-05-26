@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Hotspot.module.scss'
-import Product from "./Product/Product";
+import Product from "../../Product/Product";
 import SimpSlider from "./Slider/SimpSlider";
 
 const Hotspot = () => {
