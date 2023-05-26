@@ -86,3 +86,9 @@ textarea {
   background-color: #c73030;
   text-align: center;
 }
+
+@media (max-width: 640px) {
+  .cartInfo {
+    width: 60%;
+  }
+}
