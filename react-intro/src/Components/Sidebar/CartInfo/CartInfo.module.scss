@@ -76,3 +76,13 @@ textarea {
   border-radius: 5px;
   height: 30px;
 }
+
+.alert {
+  margin-top: 5px;
+  padding: 3px;
+  height: min-content;
+  width: 95%;
+  border-radius: 5px;
+  background-color: #c73030;
+  text-align: center;
+}

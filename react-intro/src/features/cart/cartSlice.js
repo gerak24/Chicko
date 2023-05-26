@@ -28,9 +28,12 @@ export const cartSlice = createSlice({
             state.value = JSON.parse(localStorage.getItem('Cart'));
         },
 
-        sendOrder: (state) => {
-            state.value = [];
-            localStorage.setItem('Cart', JSON.stringify(state.value));
+        sendOrder: (state, data) => {
+            let order = data.payload
+            if (order.name !== '' && order.phone !== '' && order.items.length !== 0) {
+                state.value = [];
+                localStorage.setItem('Cart', JSON.stringify(state.value));
+            }
         }
     },
 })
