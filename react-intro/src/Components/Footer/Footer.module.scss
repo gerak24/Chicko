@@ -28,6 +28,15 @@
   text-align: left;
 }
 
+.cart{
+  text-align: center;
+  text-decoration: none;
+  color: #c73030;
+  @include big_text();
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 500px) {
   .content_wrapper {
     width: 97%

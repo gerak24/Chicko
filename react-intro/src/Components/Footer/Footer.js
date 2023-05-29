@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Footer.module.scss'
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const Footer = () => {
+    const cart = useSelector((state) => state.cart.value)
+    let count = cart.reduce((acc, item) => acc + item.amount, 0);
     return (
         <div className={styles.footer}>
             <div className={styles.content_wrapper}>
@@ -12,7 +15,8 @@ const Footer = () => {
                     Перерыв: с 12.00 до 13.00<br/>
                     Суббота, воскресенье: выходной<br/>
                 </div>
-                <NavLink to={'/cart'}>
+                <NavLink to={'/cart'}  className={styles.cart}>
+                    <div>{count}</div>
                     <i className="fas fa-shopping-cart"></i>
                 </NavLink>
                 <div className={styles.workTime}>
