@@ -13,7 +13,6 @@ function checkCart() {
     let cart = localStorage.getItem('Cart');
     if (cart === null)
         localStorage.setItem('Cart', JSON.stringify([]))
-
 }
 
 export default Layout;

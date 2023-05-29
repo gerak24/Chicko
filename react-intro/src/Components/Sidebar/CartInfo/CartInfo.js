@@ -9,8 +9,9 @@ const CartInfo = () => {
     const [content, setContent] = useState('');
     const dispath = useDispatch();
     if (cart.length === 0) {
-        console.log('Ну, оно видит, шо 0')
-        if (JSON.parse(localStorage.getItem('Cart')).length !== 0)
+        let LsCart = JSON.parse(localStorage.getItem('Cart'));
+        if (LsCart !== null)
+        if (LsCart.length !== 0)
             dispath(checkCartStorage());
     }
     let sum = getSum(cart);

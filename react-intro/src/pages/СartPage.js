@@ -7,6 +7,7 @@ import Logo from "../Components/Logo/Logo";
 import Content from "../Components/Content/Content";
 import Main from "../Components/Main/Main";
 import CartInfo from "../Components/Sidebar/CartInfo/CartInfo";
+import Cart from "../Components/Content/Cart/Cart";
 
 const CatalogPage = () => {
     return (
@@ -18,7 +19,7 @@ const CatalogPage = () => {
                     <CartInfo/>
                 </Sidebar>
                 <Content>
-                    Тут типа каталог карточек
+                    <Cart/>
                 </Content>
             </Main>
             <Footer/>
