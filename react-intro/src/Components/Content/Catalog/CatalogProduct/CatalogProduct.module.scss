@@ -1,19 +1,23 @@
 @import "../../../../styles/Mixins";
 
 .content_wrapper {
+  border-radius: 5px;
+  background-color: #cfcfcf;
   height: 100%;
   width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .product_image {
+
   border-radius: 3px;
   overflow: hidden;
   width: 90%;
-  height: 70%;
+  height: 150px;
   max-height: 160px;
   object-fit: cover;
 }
@@ -25,6 +29,7 @@
   display: flex;
   justify-content: center;
   width: 90%;
+  text-align: center;
 }
 
 .product_description {

@@ -20,32 +20,68 @@ function App() {
 export function GetProduction() {
     return [{
         id: "a311c9af-f3ce-4caa-8d4b-a8ab7cab8935",
-        name: "Сало",
+        name: "\"Солнечный\"",
         hotspot: true,
-        description: "Сало сальное красиво нарезанное.Разработать программу для автоматизации процесса контроля качества продукции и оптимизации производственных процессов. Программа должна иметь функциональность для мониторинга соответствия продукции требованиям качества, анализировать данные и выделять возможные несоответствия, сигнализировать о превышении лимитов по параметрам качества и помогать быстро выявлять причину недостатков. Программа также должна содержать модуль для управления базой данных, в которой хранятся данные о качестве продукции и результаты испытаний, и обеспечивать мгновенный доступ к релевантной информации. Кроме того, программа должна иметь возможность автоматизировать производственный процесс, предотвращая допущение ошибок и несоответствий на ранних стадиях производства, что поможет повысить эффективность работы и уменьшить вероятность отклонений в качестве продукции.",
-        image: "https://ideireceptov.ru/wp-content/uploads/2021/11/2c05aa81578cdb949c038928649c4cc7.jpg",
-        price: 100.00
+        description:
+            "Проект двухэтажного просторного дома: \n - современный  \n - комфортныйь  \n - для всей семьи",
+        image: "https://rostov.azbuka-doma.ru/upload/iblock/daa/daab4435d8c118a44d4ad870ee25b835.jpg",
+        price: 962100
     }, {
         id: "fe14d368-66dd-4e7d-b927-aa8f5279fb42",
-        name: "Кот",
+        name: "\"Восход\"",
         hotspot: true,
-        description: "Животное, мохнатое",
-        image: "https://mobimg.b-cdn.net/v3/fetch/37/37a4388d1f27bf3cb994125648f8ed81.jpeg",
-        price: 1499.99
-    },{
+        description: "Для посещения доступен коттеджный дом «Восход 11,5 х 10,5»",
+        image: "https://rostov.azbuka-doma.ru/upload/iblock/048/04845c7a825db5c77c37b0a5ecd11a20.jpg",
+        price: 4087300
+    }, {
         id: "9194fee5-11e8-46e9-a75e-38c3443fb01f",
-        name: "Собака",
+        name: "\"Удача\"",
         hotspot: true,
-        description: "Животное, хвостатое",
-        image: "https://zverek.org/wp-content/uploads/2022/10/Uhod-i-vospitanie-sobak-laek-scaled.jpg",
-        price: 1209.99
-    },{
+        description: "Проект двухэтажного дома:- современный - комфортный - для всей семьи",
+        image: "https://rostov.azbuka-doma.ru/upload/iblock/379/3799d82cb0e74dbdaa21da1ec43c9a14.jpg",
+        price: 968900
+    }, {
         id: "0e2853e5-a030-4662-a275-99ae327a9194",
-        name: "Гуталин",
-        hotspot: true,
-        description: "Банка со странной херней",
-        image: "https://cheboksary.shoecareshop.ru/upload/resize_cache/iblock/76e/340_340_140cd750bba9870f18aada2478b24840a/76e0e8bae8389deb67027b31c9ed3736.jpg",
-        price: 500
+        name: "\"Радужный\"",
+        hotspot: false,
+        description: "Проект коттеджного дома \"РАДУЖНЫЙ\" 7 х 8",
+        image: "https://rostov.azbuka-doma.ru/upload/iblock/daa/daab4435d8c118a44d4ad870ee25b835.jpg",
+        price: 1397800
+    }, {
+        id: "9194fee5-11e8-46e9-a75e-38c3443fb01f",
+        name: "\"Дачник \"",
+        hotspot: false,
+        description: "Общая площадь дома\n" +
+            "54 м2 (наружный размер)\n" +
+            "Срок строительства\n" +
+            "7-15 дней\n" +
+            "Количество этажей\n" +
+            "1\n" +
+            "Количество комнат\n" +
+            "2",
+        image: "https://rostov.azbuka-doma.ru/upload/resize_cache/webp/ram.watermark/459/f93/94f/11654/a8170b18cdbaea74f28975239ec2648f.webp",
+        price: 656900
+    }, {
+        id: "0e2853e5-a030-4662-a275-99ae327a9194",
+        name: "\"Паттайя\"",
+        hotspot: false,
+        description: "Небольшой дачный дом: Размеры: 4x4 Площадь: 16 м² Комнаты: 2 Этажность: 1",
+        image: "https://domoteka-rnd.ru/wp-content/uploads/2019/10/pattajya_new-1920x768.jpg",
+        price: 286000
+    }, {
+        id: "0e2853e5-a030-4662-a275-99ae327a9194",
+        name: "\"Ростов\"",
+        hotspot: false,
+        description: "Небольшой дачный дом: Размеры: 5x4 Площадь: 34 м² Комнаты: 3 Этажность: 2",
+        image: "https://domoteka-rnd.ru/wp-content/uploads/2019/10/rostov_new-1920x768.jpg",
+        price: 439000
+    }, {
+        id: "0e2853e5-a030-4662-a275-99ae327a9194",
+        name: "\"Сан-Тропе\"",
+        hotspot: false,
+        description: "Изысканный, утонченный дачный домик в стиле курортов западного побережья Америки: Размеры: 5x11 Площадь: 43 м² Комнаты: 4 Этажность: 1",
+        image: "https://domoteka-rnd.ru/wp-content/uploads/2019/10/san-trope_new-1920x768.jpg",
+        price: 599000
     }]
 }
 
@@ -67,4 +103,5 @@ export function useWindowSize() {
     }, []);
     return size;
 }
+
 export default App;
