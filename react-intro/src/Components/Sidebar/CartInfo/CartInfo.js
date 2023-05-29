@@ -18,8 +18,8 @@ const CartInfo = () => {
     let count = getCount(cart);
     return (
         <div className={styles.cartInfo}>
-            <div className={styles.cartInfo_title}>Товаров: {sum}</div>
-            <div className={styles.cartInfo_title}>Сумма: {count}</div>
+            <div className={styles.cartInfo_title}>Товаров: {count}</div>
+            <div className={styles.cartInfo_title}>Сумма: {sum}</div>
             <div className={styles.cartInfo_form}>
                 <div className={styles.cartInfo_form_title}> Заполните контактные данные для отправки заказа</div>
                 <input id={'name'} placeholder={'ФИО'} className={styles.cartInfo_input}/>
