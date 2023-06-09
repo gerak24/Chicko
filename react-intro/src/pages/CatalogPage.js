@@ -5,6 +5,7 @@ import Layout from "../Components/Layout/Layout";
 import Main from "../Components/Main/Main";
 import Content from "../Components/Content/Content";
 import Catalog from "../Components/Content/Catalog/Catalog";
+import Popup from "../Components/Popup/Popup";
 
 const CatalogPage = () => {
     return (
@@ -14,6 +15,7 @@ const CatalogPage = () => {
                 <Content>
                     <Catalog/>
                 </Content>
+                <Popup/>
             </Main>
             <Footer/>
         </Layout>

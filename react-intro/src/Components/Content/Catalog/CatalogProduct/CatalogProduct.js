@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './CatalogProduct.module.scss'
 import {useDispatch} from 'react-redux'
 import {addToCart} from '../../../../features/cart/cartSlice'
-import Popup from "./Popup/Popup";
+import {setProduct} from "../../../../features/cart/productSlice";
 
 const CatalogProduct = ({item}) => {
     const {id, name, description, price, image} = item
     const dispath = useDispatch();
-    const [open, setOpen] = useState(false);
     return (
         <div className={styles.content_wrapper}>
             <div className={styles.product_title}>{name}</div>
@@ -17,15 +16,11 @@ const CatalogProduct = ({item}) => {
                 <div id={id} className={styles.product_button} onClick={() => dispath(addToCart(item))}>
                     <i className="fas fa-cart-plus"></i>
                 </div>
-                <div id={id} className={styles.product_button} onClick={() => {
-                }}>
+                <div id={id} className={styles.product_button} onClick={() => dispath(setProduct(item))}>
                     <i className="fas fa-file-alt"></i>
                 </div>
                 <div className={styles.product_price}>{price} руб.</div>
             </div>
-            {open && (<div onClick={() => setOpen(false)} className={styles.popup}>
-                <Popup onClick={() => setOpen(false)} id={id} item={item}/>
-            </div>)}
         </div>
     );
 };

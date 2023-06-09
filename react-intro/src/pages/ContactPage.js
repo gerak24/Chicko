@@ -9,6 +9,7 @@ import Main from "../Components/Main/Main";
 import Content from "../Components/Content/Content";
 import Contacts from "../Components/Content/Contacts/Contacts";
 import {useWindowSize} from "../App";
+import Popup from "../Components/Popup/Popup";
 
 
 const ContactPage = () => {
@@ -25,6 +26,7 @@ const ContactPage = () => {
                     <Content>
                         <Contacts/>
                     </Content>
+                    <Popup/>
                 </Main>
                 <Footer/>
             </Layout>
@@ -40,6 +42,7 @@ const ContactPage = () => {
                         </Sidebar>
                         <Contacts/>
                     </Content>
+                    <Popup/>
                 </Main>
                 <Footer/>
             </Layout>);

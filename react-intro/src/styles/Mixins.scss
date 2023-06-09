@@ -64,6 +64,8 @@
   border-radius: 5px;
   border: #111111 solid;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes show_popup {

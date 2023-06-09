@@ -9,6 +9,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Logo from "../Components/Logo/Logo";
 import Content from "../Components/Content/Content";
 import Home from "../Components/Content/Home/Home";
+import Popup from "../Components/Popup/Popup";
 
 
 const HomePage = () => {
@@ -25,6 +26,7 @@ const HomePage = () => {
                     <Content>
                         <Home/>
                     </Content>
+                    <Popup/>
                 </Main>
                 <Footer/>
             </Layout>
@@ -40,6 +42,7 @@ const HomePage = () => {
                         </Sidebar>
                         <Home/>
                     </Content>
+                    <Popup/>
                 </Main>
                 <Footer/>
             </Layout>);

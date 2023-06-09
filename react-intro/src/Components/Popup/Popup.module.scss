@@ -1,0 +1,119 @@
+@import "../../styles/Mixins";
+
+.popup{
+  @include popup
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  transition: 0.2s all;
+  i {
+    font-size: 2rem;
+    color: #fff;
+  }
+}
+
+.close:active {
+  transform: scale(0.98);
+}
+
+.add {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  transition: 0.2s all;
+  i {
+    font-size: 2rem;
+    color: #fff;
+  }
+}
+
+.add:active {
+  transform: scale(0.98);
+}
+
+.row {
+  overflow: hidden;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  height: 65%;
+  align-items: center;
+}
+
+.img {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 70%;
+  margin: 5px auto;
+  width: fit-content;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: min-content;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.column::-webkit-scrollbar {
+  height: 3px;
+}
+
+.column::-webkit-scrollbar-track {
+  margin: auto;
+  background: #3f3f3f;
+  border-radius: 5px;
+}
+
+.column::-webkit-scrollbar-thumb {
+  background-color: #c73030;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.title {
+  color: #fff;
+  white-space: nowrap;
+  margin-top: 5px;
+  line-height: 2rem;
+  text-align: center;
+  @include huge_text;
+}
+
+.description {
+  @include big_text;
+  color: #fff;
+  width: 90%;
+  margin: 20px auto;
+  overflow-y: auto;
+}
+
+.description::-webkit-scrollbar {
+  width: 5px;
+}
+
+.description::-webkit-scrollbar-track {
+  margin: auto;
+  background: #3F3F3F82;
+  border-radius: 5px;
+}
+
+.description::-webkit-scrollbar-thumb {
+  background-color: #FF641E;
+  border-radius: 5px;
+  height: 30px;
+}
