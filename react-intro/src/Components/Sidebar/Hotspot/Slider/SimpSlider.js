@@ -4,7 +4,7 @@ import styles from './SimpSlider.module.scss'
 
 const SimpSlider = ({children}) => {
     const settings = {
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 5000,
         dots: false,
         infinite: true,
