@@ -3,13 +3,13 @@
   src: url(fonts/TildaSans-Semibold.woff); /* Путь к файлу со шрифтом */
 }
 
-@mixin content{
+@mixin content {
   padding: 5px;
   display: flex;
   flex-direction: column;
 }
 
-@mixin content_title{
+@mixin content_title {
   @include huge_text;
   color: #c51818;
   font-style: italic;
@@ -17,7 +17,7 @@
   border-bottom: 1px solid #c51818;
 }
 
-@mixin content_descr{
+@mixin content_descr {
   @include big_text;
   @include dark_gray_font;
   line-height: 2.75rem;
@@ -38,34 +38,56 @@
   font-family: Tilda-Sans, sans-serif;
 }
 
-@mixin small_text{
+@mixin small_text {
   font-size: 0.75rem;
   font-family: Tilda-Sans, sans-serif;
 }
 
-@mixin dark_gray_font{
+@mixin dark_gray_font {
   color: #282828;
 }
 
-@mixin light_gray_font{
+@mixin light_gray_font {
   color: #CECECED6;
 }
 
 @mixin popup {
-  animation: show_popup 2s ease;
+  padding: 10px;
+  animation: show_popup 0.7s ease;
   overflow: hidden;
   height: 90vh;
-  width: 90vw;
+  width: min-content;
   position: fixed;
   background-color: #3f3f3f;
-  align-self: center;
-  top: 5vh;
-  left: 5vw;
-  border-radius: 5px;
+  border-radius: 8px;
   border: #111111 solid;
   z-index: 100;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin popup_img {
+  border-radius: 8px;
+  width: max-content;
+  height: 100%;
+  background-size: contain;
+  transition: none;
+}
+
+@mixin img_zoomable {
+  cursor: zoom-in;
+  background: center center / cover no-repeat;
+  width: 100%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 @keyframes show_popup {

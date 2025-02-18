@@ -1,0 +1,27 @@
+@import "../../../../styles/Mixins";
+
+.popup_img {
+  @include popup_img
+}
+
+.popup {
+  @include popup
+}
+
+.image_container {
+  max-width: 40%;
+  float:left;
+}
+
+.img_zoomable {
+  @include img_zoomable;
+}
+
+.img_column {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+}

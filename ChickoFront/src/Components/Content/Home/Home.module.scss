@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+b {
+  @include huge_text;
+  font-style: italic;
+}
+
 .description {
   @include content_descr;
   line-height: 2.5rem;

@@ -1,15 +1,10 @@
 @import "../../../../styles/Mixins";
 
 .popup_img {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: none;
+  @include popup_img
 }
 
-.popup{
+.popup {
   @include popup
 }
 
@@ -26,17 +21,11 @@
 }
 
 .img_zoomable {
-  cursor: zoom-in;
-  background: center center / cover no-repeat;
-  width: 100%;
-  margin-bottom: 20px;
-  object-fit: cover;
-  overflow: hidden;
-  border-radius: 5px;
+  @include img_zoomable;
 }
 
 .left_img {
-  height: 660px;
+  height: 670px;
 }
 
 .right_img {

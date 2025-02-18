@@ -12,9 +12,9 @@ const Contacts = () => {
                 Наш Телеграм: <a href="https://t.me/+rSRmlAWAO3piMjJi">https://t.me/+rSRmlAWAO3piMjJi</a><br/>
             </div>
             <div className={styles.iframe_wrapper}>
-                <iframe className={styles.map_wrapper}
+                <iframe title="Наш адрес" className={styles.map_wrapper}
                         src="https://yandex.ru/map-widget/v1/org/chicko/152192873949/?ll=39.717039%2C47.221471&z=16"></iframe>
-                <iframe  className={styles.feedback_wrapper}
+                <iframe title="Отзыввы посетителей" className={styles.feedback_wrapper}
                         src="https://yandex.ru/maps-reviews-widget/152192873949?comments"></iframe>
             </div>
         </div>

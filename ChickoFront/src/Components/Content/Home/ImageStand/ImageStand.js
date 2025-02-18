@@ -30,9 +30,9 @@ const ImageStand = () => {
                      className={`${styles.img_zoomable} ${styles.right_img}`} src={content3} alt="Ooops"/>
             </div>
             {open && (<div onClick={() => setOpen(false)} className={styles.popup}>
-                    <div id='popup_img' onClick={() => setOpen(false)}
-                         style={{ backgroundImage: `url(${content})` }}
-                         className={styles.popup_img}></div>
+                    <img id='popup_img' onClick={() => setOpen(false)}
+                         src={content}
+                         className={styles.popup_img}></img>
                 </div>
             )}
         </div>
