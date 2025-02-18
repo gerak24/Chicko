@@ -7,6 +7,7 @@
   bottom: 0;
   display: flex;
   justify-content: center;
+
   i {
     font-size: 4rem;
     line-height: normal;
@@ -23,18 +24,47 @@
 }
 
 .workTime {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
   @include medium_text;
   @include light_gray_font;
-  text-align: left;
+  text-align: center;
+  width: 200px;
 }
 
-.cart{
+.cart {
   text-align: center;
   text-decoration: none;
   color: #c73030;
   @include big_text();
   display: flex;
   flex-direction: column;
+}
+
+.socials_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.social {
+  width: 30px;
+  height: 30px;
+}
+
+.sociallink_svg {
+  margin: 4px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  vertical-align: baseline;
+  object-fit: contain;
+  object-position: center;
+}
+
+.sociallink_svg:hover{
+  transform: scale(1.2);
 }
 
 @media (max-width: 500px) {

@@ -1,21 +1,21 @@
 import React from 'react';
-import styles  from './Contacts.module.scss'
+import styles from './Contacts.module.scss'
 
 const Contacts = () => {
     return (
         <div className={styles.contacts}>
             <div className={styles.title}> Контакты</div>
             <div className={styles.description}>
-                Мы находимся по адресу: 344065, Ростовская область, г. Ростов-на-Дону, ул. 50-летия Ростсельмаша, 8В<br/>
-                Наш телелефон/факс: +7 (863) 303-04-41; +7 (863) 303-04-42<br/>
-                Телефон нашей бухгалтерии: +7 (863) 303-04-42<br/>
-                Наша эл.почта: antey72@mail.ru, info@oooantey.ru<br/>
-                Наш skype: muzalev.sv<br/>
+                Мы находимся по адресу: Ростовская область, г. Ростов-на-Дону, Большая Садовая ул., 76<br/>
+                Наш телелефон: +7 (863) 301-35-00<br/>
+                Сообщество ВКонтакте: <a href="https://vk.com/chicko_russia">https://vk.com/chicko_russia</a><br/>
+                Наш Телеграм: <a href="https://t.me/+rSRmlAWAO3piMjJi">https://t.me/+rSRmlAWAO3piMjJi</a><br/>
             </div>
-            <div className={styles.map_wrapper}>
-                <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3Afe361d21b741c133d4f13502679a495e9acdb81890f15942087cefde5159710d&amp;source=constructor"
-                    width="100%" height="100%"></iframe>
+            <div className={styles.iframe_wrapper}>
+                <iframe className={styles.map_wrapper}
+                        src="https://yandex.ru/map-widget/v1/org/chicko/152192873949/?ll=39.717039%2C47.221471&z=16"></iframe>
+                <iframe  className={styles.feedback_wrapper}
+                        src="https://yandex.ru/maps-reviews-widget/152192873949?comments"></iframe>
             </div>
         </div>
     );
