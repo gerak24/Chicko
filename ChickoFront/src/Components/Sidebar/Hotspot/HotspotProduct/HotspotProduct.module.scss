@@ -1,7 +1,8 @@
 @import "../../../../styles/Mixins";
+@import "../../../../styles/ProductMixins";
 
 .content_wrapper {
-  height: 100%;
+  height: 376px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,105 +12,38 @@
 }
 
 .product_image {
-  border-radius: 3px;
-  overflow: hidden;
-  max-height: 160px;
-  object-fit: cover;
+  @include product_image
 }
 
 .product_title {
-  @include big_text;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: left;
-  width: 90%;
+  @include product_title;
 }
 
 .product_description {
-  @include medium_text;
-  display: flex;
-  justify-content: left;
-  width: 90%;
-  height: 100px;
-  overflow: auto;
-  border-radius: 5px;
-  border: 1px solid #3f3f3f;
-  padding: 5px;
-}
-
-.product_description::-webkit-scrollbar {
-  width: 5px;
-}
-
-.product_description::-webkit-scrollbar-track {
-  margin: auto;
-  background: #3F3F3F82;
-  border-radius: 5px;
-}
-
-.product_description::-webkit-scrollbar-thumb {
-  background-color: #c73030;
-  border-radius: 5px;
-  height: 30px;
+  @include product_description;
 }
 
 .product_buttons_wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 5px;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background-color: #c73030;
+  @include product_buttons_wrapper;
 }
 
 .product_button {
-  width: 30%;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid black;
-  display: flex;
-  transition: 0.2s all;
-
-  i {
-    font-size: 1.6rem;
-    line-height: normal
-  }
-}
-
-.product_button:hover {
-  background-color: #ce4c4c;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.product_button:active {
-
-  transform: scale(0.98);
+  @include product_button;
 }
 
 .product_button_text {
-  height: 80%;
-  width: auto;
+  @include product_button_text;
 }
 
 .product_price {
-  width: 40%;
-  background-color: #3f3f3f;
-  @include medium_text;
-  @include light_gray_font;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include product_price
 }
 
 .title_block {
   width: 46%;
 }
 
-.popup{
+.popup {
   @include popup;
   position: absolute;
 }
@@ -117,13 +51,7 @@
 @media (max-width: 640px) {
   .content_wrapper {
     flex-direction: row;
-  }
-  .product_buttons_wrapper {
-    border-radius: 8px;
-  }
-  .product_price {
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
+    height: 200px;
   }
 
   .product_description {
@@ -138,5 +66,4 @@
   .product_image {
     width: 90%;
   }
-
 }

@@ -1,7 +1,9 @@
 @import "../../../styles/Mixins";
 
 textarea {
-  height: 80px
+  height: 80px;
+  max-width: 250px;
+  max-height: 255px;
 }
 
 .cartInfo {
@@ -10,6 +12,7 @@ textarea {
   height: inherit;
   align-items: center;
   justify-content: center;
+  max-height: 550px;
 }
 
 .cartInfo_title {
@@ -26,29 +29,37 @@ textarea {
   margin-top: 5px;
   padding: 5px;
   border-radius: 5px;
-  border: #3f3f3f 1px dotted;
+  border: #c84fff 1px dashed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100%;
 }
 
 .button {
   @include medium_text;
-  background-color: #c51818;
+  background: #c14ff4;
   text-align: center;
-  border-radius: 15px;
+  height: 20px;
+  border-radius: 12px;
   padding: 5px;
   cursor: pointer;
   transition: 0.2s all;
   user-select: none;
-}
+  border: 1px solid black;
 
-.button:hover {
-  background-color: #ce4c4c;
-}
+  i {
+    font-size: 1.6rem;
+    line-height: normal
+  }
 
-.button:active {
-  transform: scale(0.98);
+  &:hover {
+    background-color: #9fa8f3;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 .cartInfo_input {
@@ -72,18 +83,19 @@ textarea {
 }
 
 .cartInfo_input::-webkit-scrollbar-thumb {
-  background-color: #c73030;
+  background-color: #c14ff4;
   border-radius: 5px;
   height: 30px;
 }
 
 .alert {
+  @include medium_text;
   margin-top: 5px;
   padding: 3px;
   height: min-content;
   width: 95%;
   border-radius: 5px;
-  background-color: #c73030;
+  background-color: #c14ff4;
   text-align: center;
 }
 

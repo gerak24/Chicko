@@ -37,7 +37,7 @@ const CartInfo = () => {
                          setOpen(true);
                          setContent(checkOrder(cart));
                      }}>
-                    Отправить
+                    Заказать
                 </div>
             </div>
             {open && (<div onClick={() => setOpen(false)} className={styles.alert}>

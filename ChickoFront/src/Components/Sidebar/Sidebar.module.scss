@@ -2,11 +2,13 @@
   width: 300px;
   margin: 5px 10px;
   padding: 5px;
-  height: calc(100% - 20px);
+  height: calc(100% - 16px);
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background-color: #e1dfdf;
+  background-color: #e6e1e6;
+  border: 1px solid #c84fff;
+  box-shadow: 0 4px 8px 0 rgb(153, 83, 186), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (max-width: 640px) {

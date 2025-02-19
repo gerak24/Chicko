@@ -2,9 +2,9 @@
 @import "../../styles/Variables";
 
 .header {
-  background-color: #282828;
+  background-color: #251f23;
   width: 100%;
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,11 +25,11 @@
 }
 
 .header_button_active {
-  background-color: #c73030;
+  background-color: #ed1779;
 }
 
 .header_button_active:hover {
-  background-color: #ce4c4c;
+  background-color: #ec569b;
 }
 
 .header_button_wait:hover {

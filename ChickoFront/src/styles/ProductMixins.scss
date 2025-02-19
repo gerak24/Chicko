@@ -1,0 +1,105 @@
+@import "./Mixins";
+
+@font-face {
+  font-family: Tilda-Sans; /* Имя шрифта */
+  src: url(fonts/TildaSans-Semibold.woff); /* Путь к файлу со шрифтом */
+}
+
+@mixin product_buttons_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+}
+
+@mixin product_button {
+  margin: 2px;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  transition: 0.2s all;
+  border-radius: 8px;
+  background: #c14ff4;
+  i {
+    font-size: 1.6rem;
+    line-height: normal
+  }
+  &:hover {
+    background-color: #9fa8f3;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@mixin product_button_text {
+  height: 80%;
+  width: auto;
+}
+
+@mixin product_price {
+  margin: 2px;
+  width: 40%;
+  background-color: #251f23;
+  @include medium_text;
+  @include light_gray_font;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+@mixin product_image {
+  border-radius: 5px;
+  overflow: hidden;
+  width: 90%;
+  height: 150px;
+  max-height: 160px;
+  object-fit: cover;
+}
+
+@mixin product_title {
+  @include big_text;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+}
+
+@mixin product_description {
+  margin-top: 5px;
+  @include medium_text;
+  display: flex;
+  flex-grow: 1;
+  justify-content: left;
+  width: 90%;
+  height: auto;
+  overflow: auto;
+  border-radius: 5px;
+  border: 1px solid #3f3f3f;
+  padding: 5px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    margin: auto;
+    background: #3F3F3F82;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #c14ff4;
+    border-radius: 8px;
+    height: 30px;
+  }
+}
+
+
+

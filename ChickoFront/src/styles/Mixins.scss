@@ -11,10 +11,10 @@
 
 @mixin content_title {
   @include huge_text;
-  color: #c51818;
+  color: #ac23e8;
   font-style: italic;
   margin-bottom: 15px;
-  border-bottom: 1px solid #c51818;
+  border-bottom: 2px solid #c84fff;
 }
 
 @mixin content_descr {
@@ -58,13 +58,14 @@
   height: 90vh;
   width: min-content;
   position: fixed;
-  background-color: #3f3f3f;
+  background-color: #32242d;
   border-radius: 8px;
-  border: #111111 solid;
+  border: 2px solid #c84fff;
+  box-shadow: 0 4px 20px 0 rgb(153, 83, 186), 0 6px 25px 0 rgba(0, 0, 0, 0.19);
   z-index: 100;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
   top: 50%;
@@ -75,6 +76,7 @@
 @mixin popup_img {
   border-radius: 8px;
   width: max-content;
+  max-width: 90vw;
   height: 100%;
   background-size: contain;
   transition: none;

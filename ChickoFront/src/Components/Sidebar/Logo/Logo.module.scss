@@ -1,17 +1,20 @@
 .logo_container {
   flex-grow: 1;
-  width: 100%;
-  height: auto;
+  width: 90%;
+  height: calc(100% - 450px);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  align-self: center;
+  border-radius: 40%;
 }
 
 .logo_img {
-  border-radius: 30%;
   padding: 5px;
-  width: 50%;
+  border-radius: 30%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 640px) {

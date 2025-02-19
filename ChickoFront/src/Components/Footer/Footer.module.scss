@@ -1,8 +1,8 @@
 @import "../../styles/Mixins";
 
 .footer {
-  background-color: #282828;
-  height: 100px;
+  background-color: #251f23;
+  height: 90px;
   width: 100%;
   bottom: 0;
   display: flex;
@@ -11,7 +11,7 @@
   i {
     font-size: 4rem;
     line-height: normal;
-    color: #c73030;
+    color: #ed1779;
   }
 }
 
@@ -36,11 +36,16 @@
 .cart {
   text-align: center;
   text-decoration: none;
-  color: #c73030;
+  color: #ed1779;
   @include big_text();
   display: flex;
   flex-direction: column;
+  transform: scale(0.7);
+  &:hover{
+    transform: scale(0.8);
+  }
 }
+
 
 .socials_wrapper {
   display: flex;
@@ -61,10 +66,9 @@
   vertical-align: baseline;
   object-fit: contain;
   object-position: center;
-}
-
-.sociallink_svg:hover{
-  transform: scale(1.2);
+  &:hover{
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width: 500px) {

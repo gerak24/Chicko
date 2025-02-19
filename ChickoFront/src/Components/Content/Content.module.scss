@@ -1,9 +1,9 @@
-.content_wrapper{
+.content_wrapper {
   width: inherit;
   padding: 5px;
-  margin: 5px;
-  background-color: #e1dfdf;
-  height: calc(100% - 20px);
+  margin: 2px;
+  background-color: #e6e1e6;
+  height: calc(100% - 14px);
   overflow: auto;
   border-radius: 5px;
 }
@@ -21,15 +21,15 @@
 }
 
 .content_wrapper::-webkit-scrollbar-thumb {
-  background-color: #c73030;
+  background-color: #c14ff4;
   border-radius: 5px;
   height: 30px;
   opacity: 0.5;
 }
 
 @media (max-width: 640px) {
-  .content_wrapper{
+  .content_wrapper {
     width: 97%;
-    margin: 5px 0;
+    //margin: 5px 0;
   }
 }

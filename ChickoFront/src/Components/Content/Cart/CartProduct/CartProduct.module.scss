@@ -1,9 +1,12 @@
 @import "../../../../styles/Mixins";
+@import "../../../../styles/ProductMixins";
 
 .content_wrapper {
-  border-radius: 5px;
-  background-color: #cfcfcf;
-  height: 100%;
+  border-radius: 8px;
+  border: 1px solid #c84fff;
+  box-shadow: 0 4px 8px 0 rgb(153, 83, 186), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #dcd0dc;
+  height: 350px;
   width: 280px;
   display: flex;
   flex-direction: column;
@@ -13,29 +16,19 @@
 }
 
 .product_image {
-  border-radius: 3px;
-  overflow: hidden;
-  width: 90%;
-  height: 150px;
-  max-height: 160px;
-  object-fit: cover;
+  @include product_image
 }
 
 .product_title {
-  @include big_text;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: center;
-  width: 90%;
-  text-align: center;
+  @include product_title;
 }
 
 .price_count {
-  border-bottom: 1px dotted #3f3f3f;
+  border-bottom: 1px dotted #4e086e;
+  border-top: 1px dotted #4e086e;
   margin-top: 10px ;
-  border-top: 1px dotted #3f3f3f;
   width: 90%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -45,62 +38,22 @@
 }
 
 .product_buttons_wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 5px;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background-color: #c73030;
+  @include product_buttons_wrapper
 }
 
 .product_button {
-  width: 30%;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid black;
-  display: flex;
-  transition: 0.2s all;
-
-  i {
-    font-size: 1.6rem;
-    line-height: normal
-  }
-}
-
-.product_button:hover {
-  background-color: #ce4c4c;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.product_button:active {
-
-  transform: scale(0.98);
+  @include product_button
 }
 
 .product_button_text {
-  height: 80%;
-  width: auto;
+  @include product_button_text
 }
 
 .product_price {
-  width: 40%;
-  background-color: #3f3f3f;
-  @include medium_text;
-  @include light_gray_font;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include product_price
 }
 
 .title_block {
   width: 46%;
-}
-
-.popup {
-  @include popup;
-  position: absolute;
 }
 

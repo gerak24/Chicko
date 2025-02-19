@@ -6,7 +6,7 @@ import Layout from "../Components/Layout/Layout";
 import Hotspot from "../Components/Sidebar/Hotspot/Hotspot";
 import Main from "../Components/Main/Main";
 import Sidebar from "../Components/Sidebar/Sidebar";
-import Logo from "../Components/Logo/Logo";
+import Logo from "../Components/Sidebar/Logo/Logo";
 import Content from "../Components/Content/Content";
 import Home from "../Components/Content/Home/Home";
 import Popup from "../Components/Popup/Popup";
