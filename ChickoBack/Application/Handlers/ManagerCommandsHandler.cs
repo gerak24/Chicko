@@ -25,7 +25,7 @@ public class ManagerCommandsHandler
     public async Task<string> RegisterAsync(Guid userId, RegisterManagerCommand cmd)
     {
         var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new EntityNotFoundException();
-        if (user.Login != _owner) throw new BusinessException("У вас нет прав регестрировать новых сотрудников");
+        if (user.Login != _owner) throw new BusinessException("У вас нет прав регистрировать новых сотрудников");
         var passHash = Hasher.Create(cmd.Password, _salt);
         if (DbContext.Managers.Any(x => x.Login == cmd.Login))
             throw new BusinessException("Работник с таким логином уже существует");

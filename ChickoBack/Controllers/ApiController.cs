@@ -8,5 +8,4 @@ namespace ChickoBack.Controllers;
 [Route("[controller]")]
 public class ApiController : Controller
 {
-    
 }

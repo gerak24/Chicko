@@ -1,0 +1,88 @@
+services:
+  proxy:
+    image: traefik:2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      web:
+    ports:
+      - "80:80"
+    command:
+      - "--api"
+      - "--api.insecure"
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=swapfox_web"
+      - "--entrypoints.http.address=:80"
+      - "--entrypoints.http.forwardedHeaders.insecure=true"
+      - "--entrypoints.https.address=:443"
+      - "--entrypoints.https.forwardedHeaders.insecure=true"
+      - "--log.level=DEBUG"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik_dashboard.entryPoints=http"
+      - "traefik.http.routers.traefik_dashboard.rule=Host(`traefik.${HOST_BASE}`)"
+      - "traefik.http.routers.traefik_dashboard.service=api@internal"
+      - "traefik.http.services.traefik_dashboard.loadbalancer.server.port=8080"
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWD}
+    networks:
+      postgres:
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  management-api:
+    image: hub.gerak/chicko/management:${PROJECT_VARIANT}
+    build:
+      dockerfile: ChickoBack/Dockerfile
+      context: ..
+      args:
+        - BUILD_CONFIGURATION=${PROJECT_CONFIGURATION}
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${PROJECT_ENVIRONMENT}
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 2G
+    command:
+      - "db:host=${DB_HOST}"
+      - "db:name=${DB_NAME}"
+      - "db:login=${DB_USER}"
+      - "db:password=${DB_PASSWD}"
+      - "db:port=${DB_PORT}"
+      - "adminLogin=${DB_OWNER_LOGIN}"
+      - "adminPassword=${DB_OWNER_PASSWORD}"
+      - "salt=${HASH_SALT}"
+      - "ConnectionStrings:redis=redis"
+    networks:
+      web:
+        aliases:
+          - manager.${HOST_BASE}
+      postgres:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management.rule=HostRegexp(`{subdomain:${HOST_BASE}`) && (PathPrefix(`/api`))"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management.entrypoints=http"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management.priority=100"
+
+networks:
+  web:
+  postgres:
