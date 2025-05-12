@@ -15,6 +15,11 @@ var dbConnString = $"Host={builder.Configuration.GetValue<string>("db:host")};" 
                    $"Username={builder.Configuration.GetValue<string>("db:login")};" +
                    $"Password={builder.Configuration.GetValue<string>("db:password")};";
 
+_ = builder.Configuration.GetValue<string>("aes:key") ??
+    throw new BusinessException("Отсутствует Key для AES шифрования");
+_ = builder.Configuration.GetValue<string>("aes:iv") ??
+    throw new BusinessException("Отсутствует IV Key для AES шифрования");
+
 builder.Services.AddDbContext<DataContext>(dbBuilder =>
     dbBuilder.UseNpgsql(dbConnString));
 
@@ -58,7 +63,6 @@ builder.Services.AddProblemDetails(options =>
 
 builder.Services.AddControllers();
 
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -86,5 +90,7 @@ app.UseProblemDetails();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

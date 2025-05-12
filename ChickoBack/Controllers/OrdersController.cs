@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChickoBack.Controllers;
 
-public class OrdersController : ApiController
+public class OrdersController(DataContext dbContext, IConfiguration configuration) : ApiController
 {
-    public OrdersController(DataContext dbContext)
-    {
-        Handler = new OrderCommandsHandler(dbContext);
-    }
-
-    private OrderCommandsHandler Handler { get; }
+    private OrderCommandsHandler Handler { get; } = new(dbContext, configuration);
 
     [HttpPost]
     [AllowAnonymous]

@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChickoBack.Controllers;
 
-public class ManagerController : ApiController
+public class ManagerController(DataContext dbContext, IConfiguration configuration) : ApiController
 {
-    public ManagerController(DataContext dbContext, IConfiguration configuration)
-    {
-        Handler = new ManagerCommandsHandler(dbContext, configuration);
-    }
-
-    private ManagerCommandsHandler Handler { get; }
+    private ManagerCommandsHandler Handler { get; } = new(dbContext, configuration);
 
     [HttpPost("[action]")]
     public async Task<IActionResult> Register(RegisterManagerCommand cmd)

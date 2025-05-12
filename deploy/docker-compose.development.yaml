@@ -4,7 +4,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      web:
+      chicko_web:
     ports:
       - "80:80"
     command:
@@ -12,7 +12,7 @@ services:
       - "--api.insecure"
       - "--providers.docker"
       - "--providers.docker.exposedbydefault=false"
-      - "--providers.docker.network=swapfox_web"
+      - "--providers.docker.network=chicko_web"
       - "--entrypoints.http.address=:80"
       - "--entrypoints.http.forwardedHeaders.insecure=true"
       - "--entrypoints.https.address=:443"
@@ -68,21 +68,23 @@ services:
       - "db:login=${DB_USER}"
       - "db:password=${DB_PASSWD}"
       - "db:port=${DB_PORT}"
+      - "aes:key=${AES_KEY}"
+      - "aes:iv=${AES_IV}"
       - "adminLogin=${DB_OWNER_LOGIN}"
       - "adminPassword=${DB_OWNER_PASSWORD}"
       - "salt=${HASH_SALT}"
       - "ConnectionStrings:redis=redis"
     networks:
-      web:
+      chicko_web:
         aliases:
           - manager.${HOST_BASE}
       postgres:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.http_${PROJECT_NAME}_management.rule=HostRegexp(`{subdomain:${HOST_BASE}`) && (PathPrefix(`/api`))"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management.rule=HostRegexp(`${HOST_BASE}`) && (PathPrefix(`/api`))"
       - "traefik.http.routers.http_${PROJECT_NAME}_management.entrypoints=http"
       - "traefik.http.routers.http_${PROJECT_NAME}_management.priority=100"
 
 networks:
-  web:
+  chicko_web:
   postgres:
