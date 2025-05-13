@@ -13,7 +13,7 @@ namespace ChickoBack.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20250513122342_init")]
-    partial class init
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
