@@ -10,17 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ChickoBack.Application.Handlers;
 
-public class ManagerCommandsHandler
+public class ManagerCommandsHandler(DataContext dbContext, IConfiguration configuration)
 {
-    public ManagerCommandsHandler(DataContext dbContext, IConfiguration configuration)
-    {
-        DbContext = dbContext;
-        _salt = configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей");
-        _owner = configuration["adminLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
-    }
-    private readonly string _salt;
-    private readonly string _owner;
-    private DataContext DbContext { get; }
+    private readonly string _salt = configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей");
+    private readonly string _owner = configuration["adminLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
+    private DataContext DbContext { get; } = dbContext;
 
     public async Task<string> RegisterAsync(Guid userId, RegisterManagerCommand cmd)
     {
@@ -31,7 +25,7 @@ public class ManagerCommandsHandler
             throw new BusinessException("Работник с таким логином уже существует");
         await DbContext.Managers.AddAsync(new Manager(Guid.NewGuid(), cmd.Login, passHash));
         await DbContext.SaveChangesAsync();
-        return "Account registered";
+        return "Пользователь зарегистрирован";
     }
 
     public async Task<string> AuthorizeAsync(AuthorizationCommand cmd)
@@ -53,7 +47,7 @@ public class ManagerCommandsHandler
         user.PassHash = Hasher.Create(cmd.NewPassword, _salt);
         DbContext.Managers.Update(user);
         await DbContext.SaveChangesAsync();
-        return "Password changed";
+        return "Пароль изменен";
     }
 
     private string GetToken(Manager account)

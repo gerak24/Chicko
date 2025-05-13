@@ -5,18 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChickoBack.Application.Handlers;
 
-public class ProductCommandsHandler
+public class ProductCommandsHandler(DataContext dbContext)
 {
-    public ProductCommandsHandler(DataContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
-    private DataContext _dbContext;
-
     public async Task<string> UpdateProduct(UpdateProductCommand cmd)
     {
-        var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
+        var product = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
                       throw new BusinessException("Продукт не найден");
 
         product.Name = cmd.Name ?? product.Name;
@@ -26,51 +19,51 @@ public class ProductCommandsHandler
         product.Image = cmd.Image ?? product.Image;
         product.IsHotOffer = cmd.IsHotOffer ?? product.IsHotOffer;
         product.IsDeleted = cmd.IsDeleted ?? product.IsDeleted;
-        _dbContext.Update(product);
+        dbContext.Update(product);
 
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
         return "Продукт обновлен";
     }
 
     public async Task<string> DeleteProduct(DeleteProductCommand cmd)
     {
-        var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
+        var product = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == cmd.Id) ??
                       throw new BusinessException("Продукт не найден");
 
         switch (cmd.IsSoftDelete)
         {
             case true:
                 product.IsDeleted = true;
-                _dbContext.Products.Update(product);
+                dbContext.Products.Update(product);
                 break;
 
             case false:
-                _dbContext.Products.Remove(product);
+                dbContext.Products.Remove(product);
                 break;
         }
 
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
         return "Продукт удален";
     }
 
 
     public async Task<string> CreateProduct(CreateProductCommand cmd)
     {
-        await _dbContext.Products.AddAsync(new Product(Guid.NewGuid(), cmd.Name, cmd.Description, cmd.Image,
+        await dbContext.Products.AddAsync(new Product(Guid.NewGuid(), cmd.Name, cmd.Description, cmd.Image,
             cmd.Type,
             cmd.Price, cmd.IsHotOffer));
 
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
         return "Продукт создан";
     }
 
     public IEnumerable<Product> GetDeletedProducts()
     {
-        return _dbContext.Products.Where(x => x.IsDeleted == true);
+        return dbContext.Products.Where(x => x.IsDeleted == true);
     }
 
     public IEnumerable<Product> GetProducts()
     {
-        return _dbContext.Products.Where(x => x.IsDeleted != true);
+        return dbContext.Products.Where(x => x.IsDeleted != true);
     }
 }
