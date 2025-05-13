@@ -9,11 +9,10 @@ public sealed class DataContext(DbContextOptions<DataContext> options, IConfigur
     : DbContext(options)
 {
     private readonly string _ownerLogin = configuration["adminLogin"] ??
-                                          throw new BusinessException("Не задан лолгин администратора в конфигурации");
+                                          throw new BusinessException("Не задан логин администратора в конфигурации");
 
-    private readonly string _ownerPass =
-        configuration["adminPassword"] ??
-        throw new BusinessException("Не задан пароль администратора в конфигурации");
+    private readonly string _ownerPass = configuration["adminPassword"] ??
+                                         throw new BusinessException("Не задан пароль администратора в конфигурации");
 
     private readonly string _salt = configuration["salt"] ??
                                     throw new BusinessException("В конфигурации не задана соль для паролей");

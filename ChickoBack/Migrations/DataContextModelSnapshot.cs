@@ -43,9 +43,9 @@ namespace ChickoBack.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("59b789cd-3825-4485-9301-e11f3dbb31b9"),
+                            Id = new Guid("4cacf957-6d90-4e70-8636-768242827db3"),
                             Login = "admin",
-                            PassHash = "1PQxx5d6Nl5GujIuqcgj3ZX0sHzz1jcDPOt9Q8a69W0="
+                            PassHash = "T7H5f9tkp2PRnt+5yLuWqcRaS+hd6VXB0mY8N7XDads="
                         });
                 });
 
@@ -62,6 +62,9 @@ namespace ChickoBack.Migrations
                     b.Property<string>("Customer")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Sum")
                         .HasColumnType("numeric");
@@ -119,7 +122,7 @@ namespace ChickoBack.Migrations
 
                             NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<int>("Id"));
 
-                            b1.Property<decimal?>("Amount")
+                            b1.Property<decimal>("Amount")
                                 .HasColumnType("numeric");
 
                             b1.Property<string>("Name")

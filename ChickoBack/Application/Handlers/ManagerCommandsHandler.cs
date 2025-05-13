@@ -18,7 +18,7 @@ public class ManagerCommandsHandler(DataContext dbContext, IConfiguration config
 
     public async Task<string> RegisterAsync(Guid userId, RegisterManagerCommand cmd)
     {
-        var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new EntityNotFoundException();
+        var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new EntityNotFoundException("Продукт не найден в базе данных");
         if (user.Login != _owner) throw new BusinessException("У вас нет прав регистрировать новых сотрудников");
         var passHash = Hasher.Create(cmd.Password, _salt);
         if (DbContext.Managers.Any(x => x.Login == cmd.Login))
@@ -31,7 +31,6 @@ public class ManagerCommandsHandler(DataContext dbContext, IConfiguration config
     public async Task<string> AuthorizeAsync(AuthorizationCommand cmd)
     {
         var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Login == cmd.Login);
-        var bb = Hasher.Create(cmd.Password, _salt);
         if (user == null) throw new BusinessException("Пользователя с таким логином не существует");
         if (!Hasher.Validate(cmd.Password, _salt, user.PassHash)) throw new BusinessException("Пароль не верен");
         return GetToken(user);

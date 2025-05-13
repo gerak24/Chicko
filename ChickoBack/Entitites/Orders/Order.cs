@@ -1,11 +1,8 @@
 ﻿namespace ChickoBack.Entitites.Orders;
 
-public class Order : Entity
+public class Order(Guid id) : Entity(id)
 {
-    public Order(Guid id) : base(id)
-    {
-    }
-
+    public int Number { get; set; }
     public decimal Sum { get; set; }
 
     public IEnumerable<OrderProduct> Products { get; set; } = null!;

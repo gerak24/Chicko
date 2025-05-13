@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChickoBack.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,7 @@ namespace ChickoBack.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Number = table.Column<int>(type: "integer", nullable: false),
                     Sum = table.Column<decimal>(type: "numeric", nullable: false),
                     Contact = table.Column<string>(type: "text", nullable: false),
                     Customer = table.Column<string>(type: "text", nullable: false)
@@ -68,7 +69,7 @@ namespace ChickoBack.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    Amount = table.Column<decimal>(type: "numeric", nullable: true)
+                    Amount = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,7 +85,7 @@ namespace ChickoBack.Migrations
             migrationBuilder.InsertData(
                 table: "Managers",
                 columns: new[] { "Id", "Login", "PassHash" },
-                values: new object[] { new Guid("59b789cd-3825-4485-9301-e11f3dbb31b9"), "admin", "T7H5f9tkp2PRnt+5yLuWqcRaS+hd6VXB0mY8N7XDads=" });
+                values: new object[] { new Guid("4cacf957-6d90-4e70-8636-768242827db3"), "admin", "T7H5f9tkp2PRnt+5yLuWqcRaS+hd6VXB0mY8N7XDads=" });
         }
 
         /// <inheritdoc />

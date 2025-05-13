@@ -1,8 +1,6 @@
 using System.Net;
-using ChickoBack.Application.Helpers;
 using ChickoBack.Data;
 using ChickoBack.Data.AuthConfiguration;
-using ChickoBack.Entitites;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
