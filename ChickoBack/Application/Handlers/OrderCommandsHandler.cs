@@ -10,7 +10,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     private readonly string _key = configuration.GetValue<string>("aes:key") ??
                                    throw new BusinessException("В конфигурации не задан ключ для шифрования");
 
-    private readonly string _iv = configuration.GetValue<string>("aes:key") ??
+    private readonly string _iv = configuration.GetValue<string>("aes:iv") ??
                                   throw new BusinessException("В конфигурации не задан IV ключ для шифрования");
 
     public async Task<string> Create(CreateOrderCommand cmd)
@@ -45,6 +45,16 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         return order;
     }
 
+    public Order GetOrder(int num)
+    {
+        var order = dbContext.Orders.FirstOrDefault(order => order.Number == num) ??
+                    throw new EntityNotFoundException($"Не найден заказ с номером: {num}");
+        order.Contact = "***";
+        order.Customer = "***";
+        return order;
+    }
+
+    
     private decimal CalculateSum(IEnumerable<OrderProduct> products)
     {
         decimal sum = 0;

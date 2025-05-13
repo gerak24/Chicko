@@ -32,12 +32,21 @@ public class OrdersController(DataContext dbContext, IConfiguration configuratio
     
     
     [HttpGet("{orderId:guid}")]
-    [AllowAnonymous]
     public IActionResult GetOrder(Guid orderId)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         return Ok(Handler.GetOrder(orderId));
+    }
+    
+    [HttpGet("[action]/{num:int}")]
+    [AllowAnonymous]
+    public IActionResult GetOrderByNum(int num)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(Handler.GetOrder(num));
     }
 }

@@ -22,7 +22,6 @@ public class ProductsController(DataContext dbContext) : ApiController
     }
 
     [HttpGet("[action]")]
-    [AllowAnonymous]
     public IActionResult GetDeleted()
     {
         if (!ModelState.IsValid)
