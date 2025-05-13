@@ -41,6 +41,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     {
         var order = dbContext.Orders.FirstOrDefault(order => order.Id == id) ??
                     throw new EntityNotFoundException($"Не найден заказ с идентификатором: {id}");
+        order.Contact = Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", "");
         return order;
     }
 

@@ -29,4 +29,15 @@ public class OrdersController(DataContext dbContext, IConfiguration configuratio
 
         return Ok(Handler.GetOrders());
     }
+    
+    
+    [HttpGet("{orderId:guid}")]
+    [AllowAnonymous]
+    public IActionResult GetOrder(Guid orderId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(Handler.GetOrder(orderId));
+    }
 }
