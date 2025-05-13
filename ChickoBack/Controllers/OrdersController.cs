@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChickoBack.Controllers;
 
+[Authorize]
 public class OrdersController(DataContext dbContext, IConfiguration configuration) : ApiController
 {
     private OrderCommandsHandler Handler { get; } = new(dbContext, configuration);

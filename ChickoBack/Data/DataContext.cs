@@ -5,26 +5,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChickoBack.Data;
 
-public sealed class DataContext : DbContext
+public sealed class DataContext(DbContextOptions<DataContext> options, IConfiguration configuration)
+    : DbContext(options)
 {
-#pragma warning disable CS8618
-    public DataContext(DbContextOptions<DataContext> options, IConfiguration configuration) : base(options)
-    {
-        _ownerLogin = configuration["adminLogin"] ??
-                      throw new BusinessException("Не задан лолгин администратора в конфигурации");
-        _ownerPass =
-            Hasher.Create(
-                configuration["adminPassword"] ??
-                throw new BusinessException("Не задан лолгин администратора в конфигурации"),
-                configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей"));
-    }
+    private readonly string _ownerLogin = configuration["adminLogin"] ??
+                                          throw new BusinessException("Не задан лолгин администратора в конфигурации");
 
-    private readonly string _ownerLogin;
-    private readonly string _ownerPass;
+    private readonly string _ownerPass =
+        configuration["adminPassword"] ??
+        throw new BusinessException("Не задан пароль администратора в конфигурации");
+
+    private readonly string _salt = configuration["salt"] ??
+                                    throw new BusinessException("В конфигурации не задана соль для паролей");
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Manager>().HasData(new {Id = Guid.NewGuid(), Login = _ownerLogin, PassHash = _ownerPass});
+        builder.Entity<Manager>().HasData(new
+            { Id = Guid.NewGuid(), Login = _ownerLogin, PassHash = Hasher.Create(_ownerPass, _salt) });
         builder.Entity<Order>().OwnsMany(x => x.Products);
     }
 

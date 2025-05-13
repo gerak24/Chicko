@@ -84,7 +84,7 @@ namespace ChickoBack.Migrations
             migrationBuilder.InsertData(
                 table: "Managers",
                 columns: new[] { "Id", "Login", "PassHash" },
-                values: new object[] { new Guid("59b789cd-3825-4485-9301-e11f3dbb31b9"), "admin", "1PQxx5d6Nl5GujIuqcgj3ZX0sHzz1jcDPOt9Q8a69W0=" });
+                values: new object[] { new Guid("59b789cd-3825-4485-9301-e11f3dbb31b9"), "admin", "T7H5f9tkp2PRnt+5yLuWqcRaS+hd6VXB0mY8N7XDads=" });
         }
 
         /// <inheritdoc />

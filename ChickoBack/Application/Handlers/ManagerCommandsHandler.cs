@@ -16,7 +16,7 @@ public class ManagerCommandsHandler
     {
         DbContext = dbContext;
         _salt = configuration["Salt"] ?? throw new BusinessException("В конфигурации не задана соль для паролей");
-        _owner = configuration["OwnerLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
+        _owner = configuration["adminLogin"] ?? throw new BusinessException("В конфигурации не задан логин суперадмина");
     }
     private readonly string _salt;
     private readonly string _owner;
@@ -37,6 +37,7 @@ public class ManagerCommandsHandler
     public async Task<string> AuthorizeAsync(AuthorizationCommand cmd)
     {
         var user = await DbContext.Managers.FirstOrDefaultAsync(x => x.Login == cmd.Login);
+        var bb = Hasher.Create(cmd.Password, _salt);
         if (user == null) throw new BusinessException("Пользователя с таким логином не существует");
         if (!Hasher.Validate(cmd.Password, _salt, user.PassHash)) throw new BusinessException("Пароль не верен");
         return GetToken(user);

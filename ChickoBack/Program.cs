@@ -1,9 +1,14 @@
 using System.Net;
+using ChickoBack.Application.Helpers;
 using ChickoBack.Data;
+using ChickoBack.Data.AuthConfiguration;
+using ChickoBack.Entitites;
 using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,19 +53,40 @@ builder.Services.AddProblemDetails(options =>
         {
             Title = exception.Message,
             Status = (int)HttpStatusCode.BadRequest,
-            Type = "https://schema.Antei.api/problems",
+            Type = "https://schema.chicko.api/problems",
         });
     options.Map<EntityNotFoundException>(exception =>
         new ProblemDetails
         {
             Title = exception.Message,
             Status = (int)HttpStatusCode.NotFound,
-            Type = "https://schema.Antei.api/problems/404"
+            Type = "https://schema.chicko.api/problems/404"
         });
 });
 
 #endregion
 
+#region Auth
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = AuthOptions.Issuer,
+            ValidateAudience = true,
+            ValidAudience = AuthOptions.Audience,
+            ValidateLifetime = true,
+            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            ValidateIssuerSigningKey = true,
+        };
+    });
+
+#endregion
+
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -82,15 +108,9 @@ using (var serviceScope = app.Services
 }
 
 app.UseForwardedHeaders();
-
 app.UseRouting();
-
 app.UseProblemDetails();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
