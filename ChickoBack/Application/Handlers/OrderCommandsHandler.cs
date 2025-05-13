@@ -23,7 +23,7 @@ public class OrderCommandsHandler
 
     public async Task<string> Create(CreateOrderCommand cmd)
     {
-        var contactHash = Encryptor.EncryptString_Aes(cmd.Contact, UTF8.GetBytes(_key), UTF8.GetBytes(_iv));
+        var contactHash = Encryptor.EncryptString_Aes(cmd.Contact, _key, _iv);
         await _dbContext.Orders.AddAsync(new Order(Guid.NewGuid())
         {
             Sum = CalculateSum(cmd.Products), Products = cmd.Products,
@@ -38,7 +38,7 @@ public class OrderCommandsHandler
         var list = _dbContext.Orders.Select(order => new Order(order.Id)
         {
             Sum = order.Sum, Customer = order.Customer,
-            Contact = Encryptor.DecryptString_Aes(order.Contact, UTF8.GetBytes(_key), UTF8.GetBytes(_iv))
+            Contact = Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n","")
         }).ToList();
 
         return list;

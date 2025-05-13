@@ -5,42 +5,42 @@ namespace ChickoBack.Application.Helpers;
 
 public class Encryptor
 {
-    public static string EncryptString_Aes(string plainText, byte[] Key, byte[] IV)
+    public static string EncryptString_Aes(string plainText, string key, string iv)
     {
         using var aesAlg = Aes.Create();
-        aesAlg.Key = Key;
-        aesAlg.IV = IV;
-
-        var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-        using var msEncrypt = new MemoryStream();
-        using var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
-        using (var swEncrypt = new StreamWriter(csEncrypt))
+        aesAlg.IV = GetIv(iv);
+        aesAlg.Key = GetKey(key);
+        
+        using var outEncrypt = new MemoryStream();
+        var encStream = new CryptoStream(outEncrypt, aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV), CryptoStreamMode.Write);
+        using (StreamWriter encryptWriter = new(encStream))
         {
-            swEncrypt.Write(plainText);
+            encryptWriter.WriteLine(plainText);
         }
-
-        var encrypted = msEncrypt.ToArray();
-
-        return BitConverter.ToString(encrypted);
+        
+        return Convert.ToBase64String(outEncrypt.ToArray());
     }
 
-    public static string DecryptString_Aes(string cipherText, byte[] key, byte[] iv)
+    public static string DecryptString_Aes(string cipherText, string key, string iv)
     {
-        var data = Encoding.UTF8.GetBytes(cipherText);
-
         using var aesAlg = Aes.Create();
-        aesAlg.Key = key;
-        aesAlg.IV = iv;
-
+        aesAlg.IV = GetIv(iv);
+        aesAlg.Key = GetKey(key);
+  
+      
         var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
-        using var msDecrypt = new MemoryStream(data);
+        using var msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText));
         using var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
         using var srDecrypt = new StreamReader(csDecrypt);
 
-        var plaintext = srDecrypt.ReadToEnd();
-
-        return plaintext;
+        return srDecrypt.ReadToEnd();
     }
+
+    private static byte[] GetIv(string ivSecret)
+        => MD5.HashData(Encoding.UTF8.GetBytes(ivSecret));
+
+
+    private static byte[] GetKey(string key)
+        => SHA256.HashData(Encoding.UTF8.GetBytes(key));
 }
