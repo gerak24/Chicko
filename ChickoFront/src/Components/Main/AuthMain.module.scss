@@ -1,0 +1,14 @@
+.main{
+  width: 100vw;
+  height: calc(100vh - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .main{
+    flex-direction: column;
+  }
+}

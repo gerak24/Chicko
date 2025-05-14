@@ -1,0 +1,69 @@
+@import "../../../styles/Mixins";
+@import "../../../styles/ProductMixins";
+
+.form_wrapper {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  width: 300px;
+  height: 380px;
+  border-radius: 8px;
+  border: 2px solid #c84fff;
+  box-shadow: 0 4px 10px 0 rgb(153, 83, 186), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+  background-color: #b9c2f6;
+}
+
+.logo_wrapper {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 25px;
+}
+
+.logo_img {
+  padding: 5px;
+  border-radius: 30%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  @include big_text;
+  width: 100%;
+  text-align: center;
+}
+
+.input_wrapper{
+  width: 80%;
+}
+
+.text {
+  @include medium_text;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.button{
+  display: flex;
+  @include product_button;
+  @include medium_text;
+  font-size: 1.2rem;
+  margin-top: 50px;
+  height: 35px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth_input {
+  width: 100%;
+  background: #9fa8f3;
+  border-radius: 5px;
+  border: 2px solid #c84fff;
+  height: 30px;
+  box-shadow: 0 2px 4px 0 rgb(153, 83, 186), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+  @include medium_text;
+  color: #e6d7ff;
+}

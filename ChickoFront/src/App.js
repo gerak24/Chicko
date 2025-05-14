@@ -17,8 +17,8 @@ function App() {
             <Route path={"/catalog"} element={<CatalogPage/>}/>
             <Route path={"/cart"} element={<CartPage/>}/>
             <Route path={'/auth'} element={<AuthPage/>}/>
-            <Route path={'/auth'} element={<NomencPage/>}/>
-            <Route path={'/auth'} element={<OrdersPage/>}/>
+            <Route path={'/auth/nomenc'} element={<NomencPage/>}/>
+            <Route path={'/auth/orders'} element={<OrdersPage/>}/>
         </Routes>
     );
 }
