@@ -23,6 +23,16 @@
   height: 100%;
 }
 
+.login{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  @include big_text;
+  @include light_gray_font;
+  text-align: center;
+  width: 200px;
+}
+
 .workTime {
   flex-direction: column;
   display: flex;
