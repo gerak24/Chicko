@@ -27,7 +27,7 @@ export const productSlice = createSlice({
 })
 
 export const {
-    setProduct,hidePopup
+    setProduct, hidePopup, addProduct, updProduct
 } = productSlice.actions
 
 export default productSlice.reducer
