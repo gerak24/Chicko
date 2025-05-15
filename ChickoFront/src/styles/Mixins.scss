@@ -82,6 +82,32 @@
   transition: none;
 }
 
+@mixin button {
+  @include medium_text;
+  background: #c14ff4;
+  text-align: center;
+  height: 20px;
+  border-radius: 12px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  user-select: none;
+  border: 1px solid black;
+
+  i {
+    font-size: 1.6rem;
+    line-height: normal
+  }
+
+  &:hover {
+    background-color: #9fa8f3;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
 @mixin img_zoomable {
   cursor: zoom-in;
   background: center center / cover no-repeat;

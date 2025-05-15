@@ -47,13 +47,15 @@
 }
 
 .button{
-  display: flex;
-  @include product_button;
-  @include medium_text;
+  @include button;
   font-size: 1.2rem;
-  height: 35px;
   text-decoration: none;
-  cursor: pointer;
+  height: 25px;
+  padding-inline: 5px;
+  align-items: center;
+  &:active{
+    color: black;
+  }
 }
 
 .auth_input {

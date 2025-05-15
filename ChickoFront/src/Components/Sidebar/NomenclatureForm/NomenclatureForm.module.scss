@@ -6,7 +6,7 @@ textarea {
   max-height: 255px;
 }
 
-.cartInfo {
+.form_wrapper {
   display: flex;
   flex-direction: column;
   height: inherit;
@@ -15,17 +15,17 @@ textarea {
   max-height: 550px;
 }
 
-.cartInfo_title {
+.title {
   @include big_text;
 }
 
-.cartInfo_form_title {
+.form_title {
   @include medium_text;
   text-align: center;
   margin-bottom: 5px;
 }
 
-.cartInfo_form {
+.form {
   margin-top: 5px;
   padding: 5px;
   border-radius: 5px;
@@ -40,7 +40,7 @@ textarea {
   @include button;
 }
 
-.cartInfo_input {
+.form_input {
   width: 95%;
   margin-bottom: 5px;
   padding: 2px;
@@ -48,6 +48,11 @@ textarea {
   border-radius: 5px;
   border: 1px solid black;
   @include medium_text
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .cartInfo_input::-webkit-scrollbar {

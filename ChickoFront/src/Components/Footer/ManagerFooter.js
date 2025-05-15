@@ -46,8 +46,4 @@ const ManagerFooter = () => {
 export function getUser() {
     return JSON.parse(localStorage.getItem('User'));
 }
-
-function exit(){
-    localStorage.setItem('User', null);
-}
 export default ManagerFooter;
