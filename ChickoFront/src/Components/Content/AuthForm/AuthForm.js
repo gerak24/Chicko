@@ -32,7 +32,7 @@ function login(e) {
         localStorage.setItem('User',
             JSON.stringify({
                 name: login,
-                date: Date.now(),
+                date: new Date
             }));
     } else {
         e.preventDefault();

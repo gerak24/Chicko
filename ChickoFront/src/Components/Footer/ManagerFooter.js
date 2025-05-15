@@ -2,9 +2,17 @@ import React from 'react';
 import vk from '../../Data/VK.svg'
 import tg from '../../Data/TG.svg'
 import styles from './Footer.module.scss'
+import {Navigate} from "react-router-dom";
 
 const ManagerFooter = () => {
     let user = getUser()
+    if (user === undefined || user === null) {return <Navigate to="/auth" />}
+    else if ((new Date - new Date(user.date)) >= 3600000 ) {
+        alert("Истекло время жизни токена доступа");
+        return <Navigate to="/auth" />}
+    console.log(new Date() - user.date);
+    console.log(new Date());
+    console.log(new Date(user.date));
     return (
         <div className={styles.footer}>
             <div className={styles.content_wrapper}>
@@ -36,17 +44,10 @@ const ManagerFooter = () => {
 };
 
 export function getUser() {
-    return JSON.parse(localStorage.getItem('User')) ?? {
-        name: 'Не авторизован', date: '',
-    }
+    return JSON.parse(localStorage.getItem('User'));
 }
 
-
 function exit(){
-    localStorage.setItem('User',
-        JSON.stringify({
-            name: '',
-            date:  ''
-        }));
+    localStorage.setItem('User', null);
 }
 export default ManagerFooter;
