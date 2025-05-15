@@ -7,6 +7,7 @@ const NomenclatureForm = () => {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState('');
     const dispath = useDispatch();
+    //TODO: Допилить проверку формы на заполненность всех полей, а потом заняться заказами
     return (
         <div className={styles.form_wrapper}>
             <div className={styles.form}>
