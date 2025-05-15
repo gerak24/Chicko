@@ -7,7 +7,7 @@
   justify-content: space-evenly;
   display: flex;
   width: 300px;
-  height: 320px;
+  height: 330px;
   border-radius: 8px;
   border: 2px solid #c84fff;
   box-shadow: 0 4px 10px 0 rgb(153, 83, 186), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
@@ -30,7 +30,6 @@
 
 .title {
   margin-top: 10px;
-  margin-bottom: 5px;
   @include big_text;
   width: 100%;
   text-align: center;
