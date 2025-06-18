@@ -33,6 +33,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWD}
     networks:
       postgres:
+    restart: unless-stopped
     ports:
       - "5435:5432"
     volumes:
@@ -85,6 +86,37 @@ services:
       - "traefik.http.routers.http_${PROJECT_NAME}_management.entrypoints=http"
       - "traefik.http.routers.http_${PROJECT_NAME}_management.priority=100"
 
+  node-install:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ..:/app
+      - node_cache:/app/node_modules
+    command: yarn
+
+  management-client:
+    image: hub.gerak/chicko/management-client:${PROJECT_VARIANT}
+    build:
+      dockerfile: /ChickoFront/Dockerfile
+      context: ..
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
+    volumes:
+      - ..:/app
+      - node_cache:/app/node_modules
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management_client.rule=HostRegexp(`{subdomain:${HOST_BASE}`)"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management_client.entrypoints=http"
+      - "traefik.http.routers.http_${PROJECT_NAME}_management_client.priority=10"
+      - "traefik.http.services.http_${PROJECT_NAME}_management_client.loadbalancer.server.port=5173"
+
+volumes:
+  node_cache:
+    
 networks:
   chicko_web:
   postgres:
