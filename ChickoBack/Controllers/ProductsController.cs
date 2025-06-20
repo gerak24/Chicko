@@ -1,4 +1,5 @@
-﻿using ChickoBack.Application.Commands.Product;
+﻿using ChickoBack.Application.Commands.Manager;
+using ChickoBack.Application.Commands.Product;
 using ChickoBack.Application.Handlers;
 using ChickoBack.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,46 @@ public class ProductsController(DataContext dbContext) : ApiController
             return BadRequest(ModelState);
 
         return Ok(Handler.GetProducts());
+    }
+
+    [HttpGet("[action]")]
+    [AllowAnonymous]
+    public IActionResult GetText()
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        Thread.Sleep(7000);
+        return Ok(new
+        {
+            text1 = "ВРЕМЯ РАБОТЫ: Ежедневно \n с 12.00 до 22.00",
+            text2 = "Chicko - Вкус Кореи \n  +7(863) 301 - 35 - 00",
+        });
+    }
+
+    [HttpPost("[action]")]
+    [AllowAnonymous]
+    public IActionResult Hello(HelloCommand command)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (command.Password != "Hello")
+            throw new BusinessException("Not hello -_-");
+
+        return Ok("O, hello");
+    }
+
+    [HttpPost("[action]")]
+    [AllowAnonymous]
+    public IActionResult Auth(AuthorizationCommand command)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (command.Password != "admin" || command.Login != "admin")
+            return Unauthorized("Not authorized -_____-");
+
+        return Ok("O, hello");
     }
 
     [HttpGet("[action]")]

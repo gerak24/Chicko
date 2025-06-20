@@ -4,7 +4,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      chicko_web:
+      web:
     ports:
       - "80:80"
     command:
@@ -76,7 +76,7 @@ services:
       - "salt=${HASH_SALT}"
       - "ConnectionStrings:redis=redis"
     networks:
-      chicko_web:
+      web:
         aliases:
           - manager.${HOST_BASE}
       postgres:
@@ -118,5 +118,5 @@ volumes:
   node_cache:
     
 networks:
-  chicko_web:
+  web:
   postgres:
