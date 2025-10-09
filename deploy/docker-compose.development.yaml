@@ -79,7 +79,7 @@ services:
       web:
         aliases:
           - manager.${HOST_BASE}
-      postgres:
+      postgres: 
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.http_${PROJECT_NAME}_management.rule=HostRegexp(`${HOST_BASE}`) && (PathPrefix(`/api`))"
