@@ -1,40 +1,29 @@
 import React, {useState} from 'react';
 import styles from './AuthForm.module.scss'
 import logo from "../../../Data/logo.jpg";
-import {Navigate} from "react-router-dom";
-import axios from "axios";
+import {useLogin} from "../../../features/api/users";
+import {useNavigate} from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AuthForm = () => {
 
-  const baseURL = process.env.REACT_APP_API_DOMAIN_BASE;
-  console.log(process.env.REACT_APP_API_DOMAIN_BASE)
-  const [request, setRequest] = useState()
+  const [login, setLogin] = useState('');
+  const [pass, setPass] = useState('');
 
-  const logReq = () => {
-    let login = document.getElementById("log").value;
-    let pass = document.getElementById("pas").value;
-    axios.post(baseURL + 'products/auth', {
-      login: login,
-      password: pass,
-    }).then(response => {
-      if (response.status === 200) {
-        setRequest(response.status);
-        console.log(response.data)
+  const {mutateAsync: loginMutation, isPending} = useLogin()
+  const nav = useNavigate();
+  const handleLogin = async () => {
+    await loginMutation({login, pass}).then(
+      (token) => {
+        localStorage.setItem("acceptToken", token);
+        nav("/new")
       }
-    }).catch(error => {
-        if (error.status === 401)
-          alert("Указан неверный пароль")
-        else
-          alert("Что то не так пошло")
-      }
-    );
-  }
-  if (request === 200) {
-    return <Navigate to={`/new/`}/>;
-  }
+    ).catch((err) => {
+      toast.error(err.response.data.detail);
+    })
 
-  return (
-    <>
+  };
+  return (<>
       <div className={styles.logo_wrapper}>
         <img src={logo} alt="Missing Logo" className={styles.logo_img}/>
       </div>
@@ -42,31 +31,18 @@ const AuthForm = () => {
         <div className={styles.title}>Авторизация менеджера</div>
         <div className={styles.input_wrapper}>
           <div className={styles.text}>Логин</div>
-          <input id="log" className={styles.auth_input}></input>
+          <input onChange={(e) => setLogin(e.target.value)} className={styles.auth_input}></input>
         </div>
         <div className={styles.input_wrapper}>
           <div className={styles.text}>Пароль</div>
-          <input id="pas" className={styles.auth_input}></input>
+          <input onChange={(e) => setPass(e.target.value)} className={styles.auth_input}></input>
         </div>
-        <div className={styles.button} onClick={logReq}>Войти</div>
+        <div className={styles.button} onClick={handleLogin}>
+          {isPending ? 'Загрузка...' : 'Войти'}
+        </div>
       </div>
     </>
   );
 };
-
-//function login(e) {
-//  let login = document.getElementById("log").value;
-//  let pass = document.getElementById("pas").value;
-//  if (pass === 'admin' && login === 'admin') {
-//    localStorage.setItem('User',
-//      JSON.stringify({
-//        name: login,
-//        date: new Date
-//      }));
-//  } else {
-//    e.preventDefault();
-//    alert('Неверный логин или пароль!');
-//  }
-//}
 
 export default AuthForm;

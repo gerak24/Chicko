@@ -7,7 +7,7 @@ import {Navigate} from "react-router-dom";
 const ManagerFooter = () => {
     let user = getUser()
     if (user === undefined || user === null) {return <Navigate to="/auth" />}
-    else if ((new Date - new Date(user.date)) >= 3600000 ) {
+    else if ((new Date() - new Date(user.date)) >= 3600000 ) {
         alert("Истекло время жизни токена доступа");
         return <Navigate to="/auth" />}
     console.log(new Date() - user.date);

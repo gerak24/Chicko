@@ -1,5 +1,5 @@
 import HomePage from "./pages/HomePage";
-import {useLayoutEffect, useState} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
 import ContactPage from "./pages/ContactPage";
 import CatalogPage from "./pages/CatalogPage";
@@ -7,19 +7,27 @@ import CartPage from "./pages/СartPage"
 import AuthPage from "./pages/AuthPage";
 import NomencPage from "./pages/NomencPage";
 import OrdersPage from "./pages/OrdersPage";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {Toaster} from "react-hot-toast";
 
 
 function App() {
-  return (
-    <Routes>
-      <Route path={"/"} element={<HomePage/>}/>
-      <Route path={"/contact"} element={<ContactPage/>}/>
-      <Route path={"/catalog"} element={<CatalogPage/>}/>
-      <Route path={"/cart"} element={<CartPage/>}/>
-      <Route path={'/auth'} element={<AuthPage/>}/>
-      <Route path={'/auth/nomenc'} element={<NomencPage/>}/>
-      <Route path={'/auth/orders'} element={<OrdersPage/>}/>
-    </Routes>
+  const queryClient = new QueryClient()
+  return (<>
+      <Toaster/>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path={"/"} element={<HomePage/>}/>
+          <Route path={"/contact"} element={<ContactPage/>}/>
+          <Route path={"/catalog"} element={<CatalogPage/>}/>
+          <Route path={"/cart"} element={<CartPage/>}/>
+          <Route path={'/auth'} element={<AuthPage/>}/>
+          <Route path={'/auth/nomenc'} element={<NomencPage/>}/>
+          <Route path={'/auth/orders'} element={<OrdersPage/>}/>
+        </Routes>
+      </QueryClientProvider>
+    </>
+
   );
 }
 

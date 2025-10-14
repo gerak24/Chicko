@@ -6,17 +6,17 @@ import {setProduct} from "../../../../features/cart/productSlice";
 
 const CatalogProduct = ({item}) => {
     const {id, name, description, price, image} = item
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     return (
         <div className={styles.content_wrapper}>
             <div className={styles.product_title}>{name}</div>
             <img src={image} alt='ooops' className={styles.product_image}></img>
             <div className={styles.product_description}>{description}</div>
             <div className={styles.product_buttons_wrapper}>
-                <div id={id} className={styles.product_button} onClick={() => dispath(addToCart(item))}>
+                <div id={id} className={styles.product_button} onClick={() => dispatch(addToCart(item))}>
                     <i className="fas fa-cart-plus"></i>
                 </div>
-                <div id={id} className={styles.product_button} onClick={() => dispath(setProduct(item))}>
+                <div id={id} className={styles.product_button} onClick={() => dispatch(setProduct(item))}>
                     <i className="fas fa-file-alt"></i>
                 </div>
                 <div className={styles.product_price}>{price} руб.</div>

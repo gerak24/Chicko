@@ -5,8 +5,8 @@ import {addProduct, updProduct} from "../../../features/cart/productSlice";
 
 const NomenclatureForm = () => {
     const [open, setOpen] = useState(false);
-    const [content, setContent] = useState('');
-    const dispath = useDispatch();
+    const [content] = useState('');
+    const dispatch = useDispatch();
     //TODO: Допилить проверку формы на заполненность всех полей, а потом заняться заказами
     return (
         <div className={styles.form_wrapper}>
@@ -20,7 +20,7 @@ const NomenclatureForm = () => {
                 <div className={styles.button}
                      onClick={() => {
                          
-                         dispath(document.getElementById('ID').value === undefined ? addProduct(
+                         dispatch(document.getElementById('ID').value === undefined ? addProduct(
                              {
                                  productId: crypto.randomUUID(),
                                  name: document.getElementById('name').value,

@@ -1,6 +1,17 @@
-import {MutationKeys} from "./keys"
-import {useQuery} from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
+import axios from "axios";
+import {API_BASE} from "../../shared/config";
 
-export const useLogin = () => {
-  return useQuery({queryKey: [MutationKeys.authorization.login]})
+export function useLogin() {
+  return useMutation({
+    mutationFn: fetchUserLogin,
+  });
+}
+
+const fetchUserLogin = async ({login, pass}) => {
+  const resp = await axios.post(API_BASE + 'manager', {
+    login: login,
+    password: pass,
+  })
+  return resp.data;
 };

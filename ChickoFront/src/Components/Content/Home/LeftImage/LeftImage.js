@@ -18,8 +18,7 @@ const LeftImage = () => {
             </div>
             {open && (<div onClick={() => setOpen(false)} className={styles.popup}>
                     <img id='popup_img' onClick={() => setOpen(false)}
-                         src={content}
-                         className={styles.popup_img}></img>
+                         src={content} className={styles.popup_img} alt='missing img'></img>
                 </div>
             )}
         </div>

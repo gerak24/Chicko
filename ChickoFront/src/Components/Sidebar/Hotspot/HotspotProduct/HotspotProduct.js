@@ -7,7 +7,7 @@ import {setProduct} from "../../../../features/cart/productSlice";
 
 const HotspotProduct = ({item}) => {
     const {id, name, description, price, image} = item
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const [width] = useWindowSize();
     if (width > 640) {
         return (
@@ -16,10 +16,10 @@ const HotspotProduct = ({item}) => {
                 <div className={styles.product_title}>{name}</div>
                 <div className={styles.product_description}>{description}</div>
                 <div className={styles.product_buttons_wrapper}>
-                    <div id={id} className={styles.product_button} onClick={() => dispath(addToCart(item))}>
+                    <div id={id} className={styles.product_button} onClick={() => dispatch(addToCart(item))}>
                         <i className="fas fa-cart-plus"></i>
                     </div>
-                    <div id={id} className={styles.product_button} onClick={() => dispath(setProduct(item))}>
+                    <div id={id} className={styles.product_button} onClick={() => dispatch(setProduct(item))}>
                         <i className="fas fa-file-alt"></i>
                     </div>
                     <div className={styles.product_price}>{price} руб.</div>
@@ -36,10 +36,10 @@ const HotspotProduct = ({item}) => {
                 <div className={styles.title_block}>
                     <div className={styles.product_description}>{description}</div>
                     <div className={styles.product_buttons_wrapper}>
-                        <div id={id} className={styles.product_button} onClick={() => dispath(addToCart(item))}>
+                        <div id={id} className={styles.product_button} onClick={() => dispatch(addToCart(item))}>
                             <i className="fas fa-cart-plus"></i>
                         </div>
-                        <div id={id} className={styles.product_button} onClick={() => dispath(setProduct(item))}>
+                        <div id={id} className={styles.product_button} onClick={() => dispatch(setProduct(item))}>
                             <i className="fas fa-file-alt"></i>
                         </div>
                         <div className={styles.product_price}>{price} руб.</div>

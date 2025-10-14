@@ -1,5 +1,4 @@
-﻿using ChickoBack.Application.Commands.Manager;
-using ChickoBack.Application.Commands.Product;
+﻿using ChickoBack.Application.Commands.Product;
 using ChickoBack.Application.Handlers;
 using ChickoBack.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -45,19 +44,6 @@ public class ProductsController(DataContext dbContext) : ApiController
 
         if (command.Password != "Hello")
             throw new BusinessException("Not hello -_-");
-
-        return Ok("O, hello");
-    }
-
-    [HttpPost("[action]")]
-    [AllowAnonymous]
-    public IActionResult Auth(AuthorizationCommand command)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        if (command.Password != "admin" || command.Login != "admin")
-            return Unauthorized("Not authorized -_____-");
 
         return Ok("O, hello");
     }

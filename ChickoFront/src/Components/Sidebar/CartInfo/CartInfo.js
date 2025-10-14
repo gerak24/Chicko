@@ -7,12 +7,12 @@ const CartInfo = () => {
     const cart = useSelector((state) => state.cart.value)
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState('');
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     if (cart.length === 0) {
         let LsCart = JSON.parse(localStorage.getItem('Cart'));
         if (LsCart !== null)
         if (LsCart.length !== 0)
-            dispath(checkCartStorage());
+            dispatch(checkCartStorage());
     }
     let sum = getSum(cart);
     let count = getCount(cart);
@@ -27,7 +27,7 @@ const CartInfo = () => {
                 <textarea id={'comment'} placeholder={'Комментарий'} className={styles.cartInfo_input}/>
                 <div className={styles.button}
                      onClick={() => {
-                         dispath(sendOrder(
+                         dispatch(sendOrder(
                              {
                                  name: document.getElementById('name').value,
                                  phone: document.getElementById('phone').value,
