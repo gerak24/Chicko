@@ -7,6 +7,8 @@ export const MutationKeys = {
 };
 
 export const QueryKeys = {
-  products: {},
+  nomenclature: {
+    products: "products",
+  },
   orders: {}
 };

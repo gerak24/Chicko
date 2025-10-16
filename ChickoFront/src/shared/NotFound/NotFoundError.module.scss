@@ -1,0 +1,23 @@
+﻿@import "../../styles/mixins";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.image {
+  height: 40vh;
+}
+
+.text {
+  @include big_text;
+  font-style: italic;
+}
