@@ -1,5 +1,6 @@
 ﻿using ChickoBack.Application.Commands.Product;
 using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using ChickoBack.Entitites;
 using Microsoft.EntityFrameworkCore;
 

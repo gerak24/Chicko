@@ -1,6 +1,7 @@
 ﻿using ChickoBack.Application.Commands.Order;
 using ChickoBack.Application.Helpers;
 using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using ChickoBack.Entitites.Orders;
 
 namespace ChickoBack.Application.Handlers;
@@ -16,23 +17,23 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     public async Task<string> Create(CreateOrderCommand cmd)
     {
         var contactHash = Encryptor.EncryptString_Aes(cmd.Contact, _key, _iv);
-        await dbContext.Orders.AddAsync(new Order(Guid.NewGuid())
-        {
-            Number = dbContext.Orders.Count() + 1,
-            Sum = CalculateSum(cmd.Products), Products = cmd.Products,
-            Customer = cmd.Customer, Contact = contactHash
-        });
+        var id = Guid.NewGuid();
+        await dbContext.Orders.AddAsync(new Order(id, dbContext.Orders.Count() + 1,
+            CalculateSum(cmd.Products), cmd.Contact, contactHash, MapProducts(cmd.Products, id)));
         await dbContext.SaveChangesAsync();
         return "Заказ отправлен";
     }
 
     public IEnumerable<Order> GetOrders()
     {
-        var list = dbContext.Orders.Select(order => new Order(order.Id)
-        {
-            Number = order.Number, Sum = order.Sum, Customer = order.Customer,
-            Contact = Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", "")
-        }).ToList();
+        var list = dbContext.Orders.Select(order =>
+            new Order(order.Id,
+                order.Number,
+                order.Sum,
+                Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", ""),
+                order.Customer,
+                order.Products.ToList())
+        ).ToList();
 
         return list;
     }
@@ -54,7 +55,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         return order;
     }
 
-    
+
     private decimal CalculateSum(IEnumerable<OrderProduct> products)
     {
         decimal sum = 0;
@@ -67,4 +68,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
 
         return sum;
     }
+
+    private List<OrderProduct> MapProducts(IEnumerable<OrderProduct> products, Guid id) => products
+        .Select(x => new OrderProduct(x.ProductId, x.Name, x.Type, x.Price, x.Amount, id)).ToList();
 }

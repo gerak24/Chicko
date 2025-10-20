@@ -1,6 +1,7 @@
 ﻿using ChickoBack.Application.Commands.Manager;
 using ChickoBack.Application.Handlers;
 using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

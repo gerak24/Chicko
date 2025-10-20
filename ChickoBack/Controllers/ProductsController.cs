@@ -1,6 +1,6 @@
 ﻿using ChickoBack.Application.Commands.Product;
 using ChickoBack.Application.Handlers;
-using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,19 +33,6 @@ public class ProductsController(DataContext dbContext) : ApiController
             text1 = "ВРЕМЯ РАБОТЫ: Ежедневно \n с 12.00 до 22.00",
             text2 = "Chicko - Вкус Кореи \n  +7(863) 301 - 35 - 00",
         });
-    }
-
-    [HttpPost("[action]")]
-    [AllowAnonymous]
-    public IActionResult Hello(HelloCommand command)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        if (command.Password != "Hello")
-            throw new BusinessException("Not hello -_-");
-
-        return Ok("O, hello");
     }
 
     [HttpGet("[action]")]

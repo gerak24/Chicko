@@ -1,7 +1,7 @@
 ﻿import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
-import {API_BASE} from "../../shared/config";
-import {QueryKeys} from "./keys";
+import {API_BASE} from "../../../shared/config";
+import {QueryKeys} from "../keys";
 import toast from "react-hot-toast";
 
 export function useFetchProduction() {

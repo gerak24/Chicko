@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Hotspot.module.scss'
 import Product from "./HotspotProduct/HotspotProduct";
 import SimpSlider from "./Slider/SimpSlider";
-import {useFetchProduction} from "../../../features/api/nomenclature";
+import {useFetchProduction} from "../../../features/api/products/useFetchProduction";
 import Loader from "../../../shared/Loader/Loader";
 import NotFoundError from "../../../shared/NotFound/NotFoundError";
 

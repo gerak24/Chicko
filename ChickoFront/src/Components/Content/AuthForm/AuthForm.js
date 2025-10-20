@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './AuthForm.module.scss'
 import logo from "../../../Data/logo.jpg";
-import {useLogin} from "../../../features/api/users";
+import {useLogin} from "../../../features/api/users/useLogin";
 import {useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -15,14 +15,14 @@ const AuthForm = () => {
   const handleLogin = async () => {
     await loginMutation({login, pass}).then(
       (token) => {
-        localStorage.setItem("acceptToken", token);
-        nav("/new")
+        if (token)
+          nav("/new")
       }
     ).catch((err) => {
       toast.error(err.response.data.detail);
     })
-
   };
+
   return (<>
       <div className={styles.logo_wrapper}>
         <img src={logo} alt="Missing Logo" className={styles.logo_img}/>

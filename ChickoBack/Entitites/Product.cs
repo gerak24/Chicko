@@ -2,6 +2,10 @@
 
 public class Product : Entity
 {
+    protected Product() // EF migrations building
+    {
+    }
+
     public Product(Guid id, string name, string description, string image, ProductType type, decimal price,
         bool isHotOffer) : base(id)
     {
