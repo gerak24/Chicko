@@ -13,12 +13,12 @@ public class ProductsController(DataContext dbContext) : ApiController
 
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult GetProducts()
+    public IActionResult GetProducts(bool showDeleted = false)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(Handler.GetProducts());
+        return Ok(Handler.GetProducts(showDeleted));
     }
 
     [HttpGet("[action]")]

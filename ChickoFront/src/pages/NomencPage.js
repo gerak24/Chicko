@@ -7,6 +7,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Content from "../Components/Content/Content";
 import Cart from "../Components/Content/Cart/Cart";
 import NomenclatureForm from "../Components/Sidebar/NomenclatureForm/NomenclatureForm";
+import Nomenclature from "../Components/Content/Catalog/Nomenclature";
 
 const NomencPage = () => {
     return (
@@ -17,7 +18,7 @@ const NomencPage = () => {
                     <NomenclatureForm/>
                 </Sidebar>
                 <Content>
-                    <Cart/>
+                    <Nomenclature/>
                 </Content>
             </Main>
             <ManagerFooter/>

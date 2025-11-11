@@ -19,7 +19,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         var contactHash = Encryptor.EncryptString_Aes(cmd.Contact, _key, _iv);
         var id = Guid.NewGuid();
         await dbContext.Orders.AddAsync(new Order(id, dbContext.Orders.Count() + 1,
-            CalculateSum(cmd.Products), cmd.Contact, contactHash, MapProducts(cmd.Products, id)));
+            CalculateSum(cmd.Products), contactHash, cmd.Customer, MapProducts(cmd.Products, id)));
         await dbContext.SaveChangesAsync();
         return "Заказ отправлен";
     }

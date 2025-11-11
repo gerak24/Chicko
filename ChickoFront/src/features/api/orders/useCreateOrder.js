@@ -9,7 +9,6 @@ export function useCreateOrder() {
 }
 
 const createOrder = async ({name, contact, comment, items}) => {
-  console.log(items)
   const resp = await axios.post(API_BASE + 'orders', {
     customer: name,
     contact: contact,

@@ -22,8 +22,8 @@ function App() {
           <Route path={"/catalog"} element={<CatalogPage/>}/>
           <Route path={"/cart"} element={<CartPage/>}/>
           <Route path={'/auth'} element={<AuthPage/>}/>
-          <Route path={'/auth/nomenc'} element={<NomencPage/>}/>
-          <Route path={'/auth/orders'} element={<OrdersPage/>}/>
+          <Route path={'/nomenc'} element={<NomencPage/>}/>
+          <Route path={'/orders'} element={<OrdersPage/>}/>
         </Routes>
       </QueryClientProvider>
     </>

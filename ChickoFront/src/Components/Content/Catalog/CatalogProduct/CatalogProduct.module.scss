@@ -15,6 +15,23 @@
   margin-bottom: 5px;
 }
 
+.nomenc_wrapper {
+  border-radius: 8px;
+  border: 1px solid #c84fff;
+  box-shadow: 0 4px 8px 0 rgb(153, 83, 186), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #dcd0dc;
+  height: 400px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
 .product_image {
   @include product_image
 }
@@ -34,6 +51,23 @@
 
 .product_button {
   @include product_button
+}
+
+.product_icon {
+  margin: 2px;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  transition: 0.2s all;
+  border-radius: 8px;
+  background: #c14ff4;
+
+  i {
+    font-size: 1.6rem;
+    line-height: normal
+  }
 }
 
 .product_button_text {

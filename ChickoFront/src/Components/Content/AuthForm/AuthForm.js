@@ -15,8 +15,10 @@ const AuthForm = () => {
   const handleLogin = async () => {
     await loginMutation({login, pass}).then(
       (token) => {
-        if (token)
-          nav("/new")
+        if (token) {
+          localStorage.setItem('User', JSON.stringify({token: token, date: new Date(), IsLogin: true}));
+          nav("/nomenc")
+        }
       }
     ).catch((err) => {
       toast.error(err.response.data.detail);
@@ -35,7 +37,7 @@ const AuthForm = () => {
         </div>
         <div className={styles.input_wrapper}>
           <div className={styles.text}>Пароль</div>
-          <input onChange={(e) => setPass(e.target.value)} className={styles.auth_input}></input>
+          <input onChange={(e) => setPass(e.target.value)} className={styles.auth_input} type={"password"}></input>
         </div>
         <div className={styles.button} onClick={handleLogin}>
           {isPending ? 'Загрузка...' : 'Войти'}
