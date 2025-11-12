@@ -40,6 +40,26 @@ public class OrdersController(DataContext dbContext, IConfiguration configuratio
         return Ok(Handler.GetOrder(orderId));
     }
     
+        
+    [HttpPost("[action]/{orderId:guid}")]
+    public IActionResult PayOrder(Guid orderId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(Handler.PayOrder(orderId));
+    }
+    
+        
+    [HttpPost("[action]/{orderId:guid}")]
+    public IActionResult PassOrder(Guid orderId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(Handler.PassOrder(orderId));
+    }
+    
     [HttpGet("[action]/{num:int}")]
     [AllowAnonymous]
     public IActionResult GetOrderByNum(int num)

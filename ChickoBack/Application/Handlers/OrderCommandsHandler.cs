@@ -45,6 +45,22 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         order.Contact = Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", "");
         return order;
     }
+    
+    public async Task<Order> PayOrder(Guid id)
+    {
+        var order = GetOrder(id);
+        order.Pay();
+        await dbContext.SaveChangesAsync();
+        return order;
+    }
+    
+    public async Task<Order> PassOrder(Guid id)
+    {
+        var order = GetOrder(id);
+        order.Pass();
+        await dbContext.SaveChangesAsync();
+        return order;
+    }
 
     public Order GetOrder(int num)
     {

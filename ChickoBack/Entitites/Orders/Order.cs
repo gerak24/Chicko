@@ -14,7 +14,9 @@ public class Order : Entity
         Contact = contact;
         Customer = customer;
         Products = products;
-        Created =  DateTime.UtcNow;
+        Created = DateTime.UtcNow;
+        IsPaid = false;
+        IsPassed = false;
     }
 
     public int Number { get; set; }
@@ -23,4 +25,16 @@ public class Order : Entity
     public string Contact { get; set; }
     public string Customer { get; set; }
     public DateTime Created { get; private set; } = DateTime.UtcNow;
+    public bool IsPaid { get; private set; }
+    public bool IsPassed { get; private set; }
+
+    public void Pay()
+    {
+        IsPaid = !IsPaid;
+    }
+    
+    public void Pass()
+    {
+        IsPassed = !IsPassed;
+    }
 }
