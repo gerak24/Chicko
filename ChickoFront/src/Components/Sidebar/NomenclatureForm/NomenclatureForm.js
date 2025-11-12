@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
 import styles from './NomenclatureForm.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, clearNomenc, updProduct} from "../../../features/cart/productSlice";
+import {
+  addProduct,
+  clearNomenc, setDeleted,
+  setDescr, setHot,
+  setImage,
+  setName,
+  setPrice,
+  updProduct
+} from "../../../features/cart/productSlice";
 
 const NomenclatureForm = () => {
   const item = useSelector((state) => state.product.value)
   const [open, setOpen] = useState(false);
-  const [content] = useState('');
+  const [content, setContent] = useState('Продукт успешо создан');
+
   const dispatch = useDispatch();
   return (
     <div className={styles.form_wrapper}>
@@ -14,19 +23,31 @@ const NomenclatureForm = () => {
         <div className={styles.form_title}> Заполните данные добавляемого/изменяемого продукта</div>
         <input id={'productId'} placeholder={'ID'} className={styles.form_input} readOnly={true} disabled={true}
                value={item.id}/>
-        <input id={'name'} placeholder={'Название'} className={styles.form_input} defaultValue={item.name}/>
+        <input id={'name'} placeholder={'Название'} className={styles.form_input} value={item.name} onChange={(e) => {
+          dispatch(setName(e.target.value))
+        }}/>
         <input id={'price'} placeholder={'Стоимость'} className={styles.form_input} type={'number'} content={'0'}
-               defaultValue={item.price}/>
+               value={item.price} onChange={(e) => {
+          dispatch(setPrice(e.target.value))
+        }}/>
         <input id={'image'} placeholder={'Ссылка на изображение'} className={styles.form_input}
-               defaultValue={item.image}/>
+               value={item.image} onChange={(e) => {
+          dispatch(setImage(e.target.value))
+        }}/>
         <textarea id={'description'} placeholder={'Описание'} className={styles.form_input}
-                  defaultValue={item.description}/>
+                  value={item.description} onChange={(e) => {
+          dispatch(setDescr(e.target.value))
+        }}/>
         <div className={styles.box_wrapper}>
-          <input type="checkbox" id="isHotOffer" className={styles.box} defaultChecked={item.isHotOffer}/>
+          <input type="checkbox" id="isHotOffer" className={styles.box} checked={item.isHotOffer} onChange={() => {
+            dispatch(setHot(!item.isHotOffer))
+          }}/>
           <label className={styles.text}>Горячее предложение</label>
         </div>
         <div className={styles.box_wrapper}>
-          <input type="checkbox" id="isDeleted" className={styles.box} defaultChecked={item.isDeleted}/>
+          <input type="checkbox" id="isDeleted" className={styles.box} checked={item.isDeleted} onChange={() => {
+            dispatch(setDeleted(!item.isDeleted))
+          }}/>
           <label className={styles.text}>Удален</label>
         </div>
         <div className={styles.button}
@@ -51,7 +72,9 @@ const NomenclatureForm = () => {
                      isHotOffer: document.getElementById('isHotOffer').value,
                      isDeleted: document.getElementById('isDeleted').value
                    }));
+               setContent(item.id ? "Продукт успешно обновлен" : "Продукт успешно создан")
                setOpen(true);
+
              }}>
           {item.id ? "Обновить" : "Создать"}
         </div>

@@ -12,7 +12,6 @@ const LeftImage = () => {
                 <img onClick={() => {
                     setOpen(true);
                     setContent(content4);
-                    console.log('content4:'+content4+" content: "+content)
                 }}
                      className={`${styles.img_zoomable} ${styles.image}`} src={content4} alt="Ooops"/>
             </div>

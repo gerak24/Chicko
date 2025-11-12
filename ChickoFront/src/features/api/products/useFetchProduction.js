@@ -17,6 +17,5 @@ export function useFetchProduction(showDeleted = false) {
 
 const getProduction = async (showDeleted = false) => {
   const resp = await axios.get(API_BASE + 'products?showDeleted=' + showDeleted);
-  console.log(resp.data)
   return resp.data ?? toast.success("Ожидайте");
 }; 

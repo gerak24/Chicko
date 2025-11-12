@@ -42,6 +42,24 @@ export const productSlice = createSlice({
         isDeleted: false
       }
     },
+    setName: (state, data) => {
+      state.value.name = data.payload;
+    },
+    setPrice: (state, data) => {
+      state.value.price = data.payload;
+    },
+    setImage: (state, data) => {
+      state.value.image = data.payload;
+    },
+    setDescr: (state, data) => {
+      state.value.description = data.payload;
+    },
+    setHot: (state, data) => {
+      state.value.isHotOffer = data.payload;
+    },
+    setDeleted: (state, data) => {
+      state.value.isDeleted = data.payload;
+    },
     hidePopup: (state) => {
       state.value.show = false;
     }
@@ -49,5 +67,16 @@ export const productSlice = createSlice({
 })
 
 export const {
-  setProduct, setNomenc, hidePopup, addProduct, updProduct, clearNomenc
+  setProduct,
+  setNomenc,
+  hidePopup,
+  addProduct,
+  updProduct,
+  clearNomenc,
+  setName,
+  setPrice,
+  setImage,
+  setDescr,
+  setHot,
+  setDeleted
 } = productSlice.actions
