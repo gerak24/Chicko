@@ -10,5 +10,7 @@ export const QueryKeys = {
   nomenclature: {
     products: "products",
   },
-  orders: {}
+  orders: {
+    list: "orders",
+  }
 };

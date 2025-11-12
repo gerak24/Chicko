@@ -19,14 +19,5 @@ public class OrderConfig : DomainObjectConfig<Order>
         builder.Property(o => o.Created).IsRequired();
 
         builder.HasIndex(order => order.Number);
-        builder.OwnsMany<OrderProduct>(x => x.Products, products =>
-        {
-            products.WithOwner().HasForeignKey(p => p.OrderId);
-            products.Property(x => x.ProductId);
-            products.Property(x => x.Name);
-            products.Property(x => x.Type);
-            products.Property(x => x.Price);
-            products.Property(x => x.Amount);
-        });
     }
 }

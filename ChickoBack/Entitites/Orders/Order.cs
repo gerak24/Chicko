@@ -14,6 +14,7 @@ public class Order : Entity
         Contact = contact;
         Customer = customer;
         Products = products;
+        Created =  DateTime.UtcNow;
     }
 
     public int Number { get; set; }

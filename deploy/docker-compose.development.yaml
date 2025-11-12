@@ -45,6 +45,21 @@ services:
       start_period: 30s
       timeout: 10s
 
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      postgres:
+      web:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=chicko_web"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.localhost`)"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+
   management-api:
     image: hub.gerak/chicko/management:${PROJECT_VARIANT}
     build:
