@@ -1,0 +1,15 @@
+﻿@import "../../styles/Mixins";
+@import "../../styles/ProductMixins";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  @include product_button;
+  width: max-content;
+  height: 90%;
+  padding: 5px;
+}

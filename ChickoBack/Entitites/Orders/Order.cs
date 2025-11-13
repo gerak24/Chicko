@@ -7,7 +7,7 @@ public class Order : Entity
     }
 
     public Order(Guid id, int number, decimal sum, string contact, string customer,
-        List<OrderProduct> products) : base(id)
+        List<OrderProduct> products, bool isPaid = false, bool isPassed = false) : base(id)
     {
         Number = number;
         Sum = sum;
@@ -15,8 +15,8 @@ public class Order : Entity
         Customer = customer;
         Products = products;
         Created = DateTime.UtcNow;
-        IsPaid = false;
-        IsPassed = false;
+        IsPaid = isPaid;
+        IsPassed = isPassed;
     }
 
     public int Number { get; set; }
@@ -32,7 +32,7 @@ public class Order : Entity
     {
         IsPaid = !IsPaid;
     }
-    
+
     public void Pass()
     {
         IsPassed = !IsPassed;

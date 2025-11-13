@@ -16,7 +16,7 @@ const OrdersTable = () => {
 
     return (
         <div className={styles.table_wrapper}>
-            <table>
+            <table className={styles.table}>
                 <thead>
                 {data.table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>

@@ -32,7 +32,9 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
                 order.Sum,
                 Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", ""),
                 order.Customer,
-                order.Products.ToList())
+                order.Products.ToList(),
+                order.IsPaid,
+                order.IsPassed)
         ).ToList();
 
         return list;

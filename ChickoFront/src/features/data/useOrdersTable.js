@@ -1,5 +1,6 @@
 ﻿import {getCoreRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
-import {useMemo} from "react";
+import React, {useMemo} from "react";
+import styles from "./ordersTableData.module.scss";
 
 export default function useOrdersTable(orders) {
 
@@ -49,16 +50,24 @@ export default function useOrdersTable(orders) {
                 accessorKey: "isPaid",
                 header: () => "Оплачен",
                 size: 40,
-                accessorFn: (row) => {
-                    return row?.isPaid ?? "-";
+                cell: ({row}) => {
+                    return row?.original?.isPaid ? <div className={styles.wrapper}>
+                        <div className={styles.label}>Оплачен</div>
+                    </div> : <div className={styles.wrapper}>
+                        <div className={styles.label}>Не оплачен</div>
+                    </div>;
                 },
             },
             {
                 accessorKey: "isPassed",
                 header: () => "Отдан",
                 size: 40,
-                accessorFn: (row) => {
-                    return row?.isPassed ?? "-";
+                cell: ({row}) => {
+                    return row?.original?.isPassed ? <div className={styles.wrapper}>
+                        <div className={styles.label}>Отдан</div>
+                    </div> : <div className={styles.wrapper}>
+                        <div className={styles.label}>Не отдан</div>
+                    </div>;
                 },
             },
         ];
