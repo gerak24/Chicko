@@ -1,83 +1,81 @@
 ﻿import {getCoreRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
-import React, {useMemo} from "react";
+import React from "react";
 import styles from "./ordersTableData.module.scss";
 
 export default function useOrdersTable(orders) {
 
-    const columns = useMemo(() => {
-        if (!orders) return [];
-        return [
-            {
-                accessorKey: "rowNumber",
-                header: () => "№",
-                size: 10,
-                cell: ({row}) => (typeof row?.index === "number" ? row.index + 1 : "-"),
-            },
-            {
-                accessorKey: "orderNumber",
-                header: () => "Номер заказа",
-                size: 40,
-                accessorFn: (row) => row?.number ?? "-",
-            },
-            {
-                accessorKey: "orderCreationDate",
-                header: () => "Дата создания заказа",
-                size: 40,
-                accessorFn: (row) => row?.created ? new Date(row.created).toLocaleString("ru-RU") : "-",
-            },
-            {
-                accessorKey: "buyer",
-                header: () => "Заказчик",
-                size: 200,
-                accessorFn: (row) => row?.customer ?? "-",
-            },
-            {
-                accessorKey: "buyerContact",
-                header: () => "Контакт заказчика",
-                size: 200,
-                accessorFn: (row) =>
-                    row?.contact === "unknown"
-                        ? "-"
-                        : row?.contact ?? "-",
-            },
-            {
-                accessorKey: "sum",
-                header: () => "Сумма заказа",
-                size: 40,
-                accessorFn: (row) => row?.sum ?? "-",
-            },
-            {
-                accessorKey: "isPaid",
-                header: () => "Оплачен",
-                size: 40,
-                cell: ({row}) => {
-                    return row?.original?.isPaid ? <div className={styles.wrapper}>
-                        <div className={styles.label}>Оплачен</div>
-                    </div> : <div className={styles.wrapper}>
-                        <div className={styles.label}>Не оплачен</div>
-                    </div>;
-                },
-            },
-            {
-                accessorKey: "isPassed",
-                header: () => "Отдан",
-                size: 40,
-                cell: ({row}) => {
-                    return row?.original?.isPassed ? <div className={styles.wrapper}>
-                        <div className={styles.label}>Отдан</div>
-                    </div> : <div className={styles.wrapper}>
-                        <div className={styles.label}>Не отдан</div>
-                    </div>;
-                },
-            },
-        ];
-    }, [orders]);
+  const columns = !orders ? [] :
+    [
+      {
+        accessorKey: "rowNumber",
+        header: () => "№",
+        size: 10,
+        cell: ({row}) => (typeof row?.index === "number" ? row.index + 1 : "-"),
+      },
+      {
+        accessorKey: "orderNumber",
+        header: () => "Номер заказа",
+        size: 40,
+        accessorFn: (row) => row?.number ?? "-",
+      },
+      {
+        accessorKey: "orderCreationDate",
+        header: () => "Дата создания заказа",
+        size: 40,
+        accessorFn: (row) => row?.created ? new Date(row.created).toLocaleString("ru-RU") : "-",
+      },
+      {
+        accessorKey: "buyer",
+        header: () => "Заказчик",
+        size: 200,
+        accessorFn: (row) => row?.customer ?? "-",
+      },
+      {
+        accessorKey: "buyerContact",
+        header: () => "Контакт заказчика",
+        size: 200,
+        accessorFn: (row) =>
+          row?.contact === "unknown"
+            ? "-"
+            : row?.contact ?? "-",
+      },
+      {
+        accessorKey: "sum",
+        header: () => "Сумма заказа",
+        size: 40,
+        accessorFn: (row) => row?.sum ?? "-",
+      },
+      {
+        accessorKey: "isPaid",
+        header: () => "Оплачен",
+        size: 40,
+        cell: ({row}) => {
+          return row?.original?.isPaid ? <div className={styles.wrapper}>
+            <div className={styles.label}>Оплачен</div>
+          </div> : <div className={styles.wrapper}>
+            <div className={styles.label}>Не оплачен</div>
+          </div>;
+        },
+      },
+      {
+        accessorKey: "isPassed",
+        header: () => "Отдан",
+        size: 40,
+        cell: ({row}) => {
+          return row?.original?.isPassed ? <div className={styles.wrapper}>
+            <div className={styles.label}>Отдан</div>
+          </div> : <div className={styles.wrapper}>
+            <div className={styles.label}>Не отдан</div>
+          </div>;
+        },
+      },
+    ];
 
-    const table = useReactTable({
-        columns,
-        data: orders,
-        getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-    });
-    return {table}
+  const table = useReactTable({
+    columns,
+    data: orders,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
+  return {table}
 }
