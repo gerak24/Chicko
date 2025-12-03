@@ -46,6 +46,7 @@ export default function useOrdersTable(orders) {
         accessorFn: (row) => row?.sum ?? "-",
       },
       {
+        //TODO: Добить сммену стейта у order на onClick
         accessorKey: "isPaid",
         header: () => "Оплачен",
         size: 40,
@@ -58,6 +59,7 @@ export default function useOrdersTable(orders) {
         },
       },
       {
+        //TODO: Добить сммену стейта у order на onClick
         accessorKey: "isPassed",
         header: () => "Отдан",
         size: 40,

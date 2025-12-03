@@ -70,8 +70,6 @@ export const {
   setProduct,
   setNomenc,
   hidePopup,
-  addProduct,
-  updProduct,
   clearNomenc,
   setName,
   setPrice,

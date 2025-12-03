@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import styles from './NomenclatureForm.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {
-  addProduct,
-  clearNomenc, setDeleted,
-  setDescr, setHot,
+  clearNomenc,
+  setDeleted,
+  setDescr,
+  setHot,
   setImage,
   setName,
-  setPrice,
-  updProduct
+  setPrice
 } from "../../../features/cart/productSlice";
 
 const NomenclatureForm = () => {
@@ -52,26 +52,27 @@ const NomenclatureForm = () => {
         </div>
         <div className={styles.button}
              onClick={() => {
-               dispatch(document.getElementById('ID').value === undefined ? addProduct(
-                   {
-                     productId: crypto.randomUUID(),
-                     name: document.getElementById('name').value,
-                     price: document.getElementById('price').value,
-                     image: document.getElementById('image').value,
-                     description: document.getElementById('description').value,
-                     isHotOffer: document.getElementById('isHotOffer').value,
-                     isDeleted: document.getElementById('isDeleted').value
-                   }) :
-                 updProduct(
-                   {
-                     productId: document.getElementById('ID').value,
-                     name: document.getElementById('name').value,
-                     price: document.getElementById('price').value,
-                     image: document.getElementById('image').value,
-                     description: document.getElementById('description').value,
-                     isHotOffer: document.getElementById('isHotOffer').value,
-                     isDeleted: document.getElementById('isDeleted').value
-                   }));
+               //TODO: Сделать юз фичи, которая кидает запрос в бэк
+               // dispatch(document.getElementById('productId').value === undefined ? addProduct(
+               //     {
+               //       productId: crypto.randomUUID(),
+               //       name: document.getElementById('name').value,
+               //       price: document.getElementById('price').value,
+               //       image: document.getElementById('image').value,
+               //       description: document.getElementById('description').value,
+               //       isHotOffer: document.getElementById('isHotOffer').value,
+               //       isDeleted: document.getElementById('isDeleted').value
+               //     }) :
+               //   updProduct(
+               //     {
+               //       productId: document.getElementById('productId').value,
+               //       name: document.getElementById('name').value,
+               //       price: document.getElementById('price').value,
+               //       image: document.getElementById('image').value,
+               //       description: document.getElementById('description').value,
+               //       isHotOffer: document.getElementById('isHotOffer').value,
+               //       isDeleted: document.getElementById('isDeleted').value
+               //     }));
                setContent(item.id ? "Продукт успешно обновлен" : "Продукт успешно создан")
                setOpen(true);
 
