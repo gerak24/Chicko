@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './CartInfo.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {checkCartStorage} from '../../../features/cart/cartSlice'
+import {checkCartStorage, sendOrder} from '../../../features/cart/cartSlice'
 import {useCreateOrder} from "../../../features/api/orders/useCreateOrder";
 import toast from "react-hot-toast";
 
@@ -21,8 +21,8 @@ const CartInfo = () => {
     if (name.length > 0 & contact.length > 0 && cart.length > 0)
       await orderMutation({name, contact, comment, items: cart}).then(
         (num) => {
-          setContent('Заказ отправлен. С вами свяжется менеджер.');
-          localStorage.setItem("orderNumber", num);
+          setContent(`Заказ отправлен. Номер заказа: ${num} С вами свяжется менеджер.`);
+          dispatch(sendOrder({name, contact, comment, items: cart, number: num}))
         }
       ).catch((err) => {
         toast.error(err.response.data.title);

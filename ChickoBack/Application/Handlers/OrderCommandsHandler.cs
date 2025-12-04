@@ -18,10 +18,11 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     {
         var contactHash = Encryptor.EncryptString_Aes(cmd.Contact, _key, _iv);
         var id = Guid.NewGuid();
-        await dbContext.Orders.AddAsync(new Order(id, dbContext.Orders.Count() + 1,
+        var num = dbContext.Orders.Count() + 1;
+        await dbContext.Orders.AddAsync(new Order(id, num,
             CalculateSum(cmd.Products), contactHash, cmd.Customer, MapProducts(cmd.Products, id)));
         await dbContext.SaveChangesAsync();
-        return "Заказ отправлен";
+        return num.ToString();
     }
 
     public IEnumerable<Order> GetOrders()
@@ -47,7 +48,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         order.Contact = Encryptor.DecryptString_Aes(order.Contact, _key, _iv).Replace("\n", "");
         return order;
     }
-    
+
     public async Task<Order> PayOrder(Guid id)
     {
         var order = dbContext.Orders.FirstOrDefault(order => order.Id == id) ??
@@ -56,7 +57,7 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
         await dbContext.SaveChangesAsync();
         return order;
     }
-    
+
     public async Task<Order> PassOrder(Guid id)
     {
         var order = dbContext.Orders.FirstOrDefault(order => order.Id == id) ??

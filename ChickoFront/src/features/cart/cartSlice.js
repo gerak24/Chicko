@@ -8,7 +8,6 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, data) => {
       state.value = JSON.parse(localStorage.getItem('Cart'));
-      console.log(data.payload)
       let item = data.payload
       if (state.value.some(i => i.productId === item.productId)) {
         let itemInCart = state.value.find(i => i.productId === item.productId);
@@ -47,10 +46,11 @@ export const cartSlice = createSlice({
       else state.value = [];
     },
 
-    sendOrder: (state, /*data*/) => {
-      // let order = data.payload
+    sendOrder: (state, data) => {
+      let order = data.payload
       state.value = [];
       localStorage.setItem('Cart', JSON.stringify(state.value));
+      localStorage.setItem("orderNumber", order.number);
     }
   },
 })
@@ -59,5 +59,3 @@ export const {
   addToCart, sendOrder,
   checkCartStorage, removeFromCart
 } = cartSlice.actions
-
-export default cartSlice.reducer
