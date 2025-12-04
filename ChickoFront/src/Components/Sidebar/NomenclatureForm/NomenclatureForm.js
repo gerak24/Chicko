@@ -32,18 +32,17 @@ const NomenclatureForm = () => {
       isHotOffer: item.isHotOffer,
       isDeleted: item.isDeleted,
     };
-    console.log(getFormData)
-    if (item.id === undefined) {
-      await createProduction(getFormData).then(() => {
-          setContent("Продукт успешно создан")
+    if (item?.id?.length > 0) {
+      await updateProduction(getFormData).then(() => {
+          setContent("Продукт успешно обновлен")
         }
       ).catch((err) => {
         toast.error(err.response.data.title);
         setContent('Ошибка отправки: ' + err.response.data.title);
       })
     } else {
-      await updateProduction(getFormData).then(() => {
-          setContent("Продукт успешно обновлен")
+      await createProduction(getFormData).then(() => {
+          setContent("Продукт успешно создан")
         }
       ).catch((err) => {
         toast.error(err.response.data.title);
@@ -59,7 +58,7 @@ const NomenclatureForm = () => {
       <div className={styles.form}>
         <div className={styles.form_title}> Заполните данные добавляемого/изменяемого продукта</div>
         <input id={'productId'} placeholder={'ID'} className={styles.form_input} readOnly={true} disabled={true}
-               value={item.id ?? ""}/>
+               value={item.id}/>
         <input id={'name'} placeholder={'Название'} className={styles.form_input} value={item.name} onChange={(e) => {
           dispatch(setName(e.target.value))
         }}/>

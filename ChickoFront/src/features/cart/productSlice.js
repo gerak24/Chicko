@@ -4,13 +4,15 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     value: {
-      id: undefined,
-      name: '',
-      description: '',
-      price: '',
-      image: '',
-      show: false
-    },
+      id: "",
+      name: "",
+      description: "",
+      price: "",
+      image: "",
+      show: false,
+      isHotOffer: false,
+      isDeleted: false
+    }
   },
   reducers: {
     setProduct: (state, data) => {
@@ -33,7 +35,7 @@ export const productSlice = createSlice({
     },
     clearNomenc: (state) => {
       state.value = {
-        id: undefined,
+        id: "",
         name: '',
         description: '',
         price: '',
