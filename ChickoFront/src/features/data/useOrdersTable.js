@@ -1,11 +1,18 @@
 ﻿import {getCoreRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
 import React from "react";
 import styles from "./ordersTableData.module.scss";
+import {usePayOrder} from "../api/orders/usePayOrder";
+import {usePassOrder} from "../api/orders/usePassOrder";
 
 export default function useOrdersTable(orders) {
+  const {mutateAsync: payOrder} = usePayOrder()
+  const {mutateAsync: passOrder} = usePassOrder()
 
   const columns = !orders ? [] :
     [
+      {
+        accessorKey: "Id",
+      },
       {
         accessorKey: "rowNumber",
         header: () => "№",
@@ -51,10 +58,9 @@ export default function useOrdersTable(orders) {
         header: () => "Оплачен",
         size: 40,
         cell: ({row}) => {
-          return row?.original?.isPaid ? <div className={styles.wrapper}>
-            <div className={styles.label}>Оплачен</div>
-          </div> : <div className={styles.wrapper}>
-            <div className={styles.label}>Не оплачен</div>
+          return <div className={styles.wrapper}>
+            <div className={styles.label}
+                 onClick={() => payOrder(row?.original?.id)}>{row?.original?.isPaid ? "Оплачен" : "Не оплачен"}</div>
           </div>;
         },
       },
@@ -64,10 +70,9 @@ export default function useOrdersTable(orders) {
         header: () => "Отдан",
         size: 40,
         cell: ({row}) => {
-          return row?.original?.isPassed ? <div className={styles.wrapper}>
-            <div className={styles.label}>Отдан</div>
-          </div> : <div className={styles.wrapper}>
-            <div className={styles.label}>Не отдан</div>
+          return <div className={styles.wrapper}>
+            <div className={styles.label}
+                 onClick={() => passOrder(row?.original?.id)}>{row?.original?.isPassed ? "Отдан" : "Не отдан"}</div>
           </div>;
         },
       },
@@ -78,6 +83,11 @@ export default function useOrdersTable(orders) {
     data: orders,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    state: {
+      columnVisibility: {
+        Id: false,
+      }
+    }
   });
   return {table}
 }

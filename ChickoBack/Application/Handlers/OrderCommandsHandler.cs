@@ -50,7 +50,8 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     
     public async Task<Order> PayOrder(Guid id)
     {
-        var order = GetOrder(id);
+        var order = dbContext.Orders.FirstOrDefault(order => order.Id == id) ??
+                    throw new EntityNotFoundException($"Не найден заказ с идентификатором: {id}");
         order.Pay();
         await dbContext.SaveChangesAsync();
         return order;
@@ -58,7 +59,8 @@ public class OrderCommandsHandler(DataContext dbContext, IConfiguration configur
     
     public async Task<Order> PassOrder(Guid id)
     {
-        var order = GetOrder(id);
+        var order = dbContext.Orders.FirstOrDefault(order => order.Id == id) ??
+                    throw new EntityNotFoundException($"Не найден заказ с идентификатором: {id}");
         order.Pass();
         await dbContext.SaveChangesAsync();
         return order;
