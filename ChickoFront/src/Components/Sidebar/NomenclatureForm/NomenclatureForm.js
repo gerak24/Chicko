@@ -10,11 +10,48 @@ import {
   setName,
   setPrice
 } from "../../../features/cart/productSlice";
+import {useCreateProduction} from "../../../features/api/products/useCreateProduction";
+import toast from "react-hot-toast";
+import {useUpdateProduction} from "../../../features/api/products/useUpdateProduction";
 
 const NomenclatureForm = () => {
   const item = useSelector((state) => state.product.value)
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState('Продукт успешо создан');
+  const {mutateAsync: createProduction} = useCreateProduction()
+  const {mutateAsync: updateProduction} = useUpdateProduction()
+
+
+  const editProduct = async () => {
+    const getFormData = {
+      productId: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      description: item.description,
+      isHotOffer: item.isHotOffer,
+      isDeleted: item.isDeleted,
+    };
+    console.log(getFormData)
+    if (item.id === undefined) {
+      await createProduction(getFormData).then(() => {
+          setContent("Продукт успешно создан")
+        }
+      ).catch((err) => {
+        toast.error(err.response.data.title);
+        setContent('Ошибка отправки: ' + err.response.data.title);
+      })
+    } else {
+      await updateProduction(getFormData).then(() => {
+          setContent("Продукт успешно обновлен")
+        }
+      ).catch((err) => {
+        toast.error(err.response.data.title);
+        setContent('Ошибка отправки: ' + err.response.data.title);
+      })
+    }
+    setOpen(true);
+  }
 
   const dispatch = useDispatch();
   return (
@@ -22,7 +59,7 @@ const NomenclatureForm = () => {
       <div className={styles.form}>
         <div className={styles.form_title}> Заполните данные добавляемого/изменяемого продукта</div>
         <input id={'productId'} placeholder={'ID'} className={styles.form_input} readOnly={true} disabled={true}
-               value={item.id}/>
+               value={item.id ?? ""}/>
         <input id={'name'} placeholder={'Название'} className={styles.form_input} value={item.name} onChange={(e) => {
           dispatch(setName(e.target.value))
         }}/>
@@ -51,31 +88,8 @@ const NomenclatureForm = () => {
           <label className={styles.text}>Удален</label>
         </div>
         <div className={styles.button}
-             onClick={() => {
-               //TODO: Сделать юз фичи, которая кидает запрос в бэк
-               // dispatch(document.getElementById('productId').value === undefined ? addProduct(
-               //     {
-               //       productId: crypto.randomUUID(),
-               //       name: document.getElementById('name').value,
-               //       price: document.getElementById('price').value,
-               //       image: document.getElementById('image').value,
-               //       description: document.getElementById('description').value,
-               //       isHotOffer: document.getElementById('isHotOffer').value,
-               //       isDeleted: document.getElementById('isDeleted').value
-               //     }) :
-               //   updProduct(
-               //     {
-               //       productId: document.getElementById('productId').value,
-               //       name: document.getElementById('name').value,
-               //       price: document.getElementById('price').value,
-               //       image: document.getElementById('image').value,
-               //       description: document.getElementById('description').value,
-               //       isHotOffer: document.getElementById('isHotOffer').value,
-               //       isDeleted: document.getElementById('isDeleted').value
-               //     }));
-               setContent(item.id ? "Продукт успешно обновлен" : "Продукт успешно создан")
-               setOpen(true);
-
+             onClick={async () => {
+               await editProduct()
              }}>
           {item.id ? "Обновить" : "Создать"}
         </div>
