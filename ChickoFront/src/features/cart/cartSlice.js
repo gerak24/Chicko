@@ -8,13 +8,14 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, data) => {
       state.value = JSON.parse(localStorage.getItem('Cart'));
+      console.log(data.payload)
       let item = data.payload
-      if (state.value.some(i => i.id === item.id)) {
-        let itemInCart = state.value.find(i => i.id === item.id);
+      if (state.value.some(i => i.productId === item.productId)) {
+        let itemInCart = state.value.find(i => i.productId === item.productId);
         itemInCart.amount++;
       } else
         state.value.push({
-          productId: item.id,
+          productId: item.productId,
           name: item.name,
           type: item.type,
           price: item.price,
@@ -27,16 +28,15 @@ export const cartSlice = createSlice({
     removeFromCart: (state, data) => {
       state.value = JSON.parse(localStorage.getItem('Cart'));
       let removedItem = data.payload
-      let cartItem = state.value.find(x => x.id === removedItem.id);
+      let cartItem = state.value.find(x => x.productId === removedItem.productId);
       cartItem.amount--;
       if (cartItem.amount <= 0) {
-        state.value = state.value.filter(x => x.id !== removedItem.id)
+        state.value = state.value.filter(x => x.productId !== removedItem.productId)
       }
       localStorage.setItem('Cart', JSON.stringify(state.value));
     },
 
     checkCartStorage: (state) => {
-
       let LScart = JSON.parse(localStorage.getItem('Cart'))
       if (LScart === null) {
         localStorage.setItem('Cart', JSON.stringify([]))
@@ -47,8 +47,8 @@ export const cartSlice = createSlice({
       else state.value = [];
     },
 
-    sendOrder: (state, data) => {
-      let order = data.payload
+    sendOrder: (state, /*data*/) => {
+      // let order = data.payload
       state.value = [];
       localStorage.setItem('Cart', JSON.stringify(state.value));
     }
