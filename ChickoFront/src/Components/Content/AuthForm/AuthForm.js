@@ -21,7 +21,8 @@ const AuthForm = () => {
         }
       }
     ).catch((err) => {
-      toast.error(err.response.data.detail);
+      toast.error(err.message);
+      //toast.error(err.response.data.detail);
     })
   };
 

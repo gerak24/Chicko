@@ -21,6 +21,7 @@ const CartInfo = () => {
     if (name.length > 0 & contact.length > 0 && cart.length > 0)
       await orderMutation({name, contact, comment, items: cart}).then(
         (num) => {
+          num = num ? num : 0
           setContent(`Заказ отправлен. Номер заказа: ${num} С вами свяжется менеджер.`);
           dispatch(sendOrder({name, contact, comment, items: cart, number: num}))
         }

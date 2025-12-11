@@ -1,7 +1,6 @@
 ﻿import {useMutation, useQueryClient} from "@tanstack/react-query";
-import axios from "axios";
-import {API_BASE} from "../../../shared/config";
 import {QueryKeys} from "../keys";
+import toast from "react-hot-toast";
 
 export function usePayOrder() {
   const queryClient = useQueryClient();
@@ -13,7 +12,8 @@ export function usePayOrder() {
 }
 
 const payOrder = async (orderId) => {
-  const token = JSON.parse(localStorage.getItem("User")).token;
-  const resp = await axios.post(API_BASE + 'orders/payOrder/' + orderId, {}, {headers: {"Authorization": `Bearer ${token}`}})
-  return resp.data;
+  // const token = JSON.parse(localStorage.getItem("User")).token;
+  // const resp = await axios.post(API_BASE + 'orders/payOrder/' + orderId, {}, {headers: {"Authorization": `Bearer ${token}`}})
+  // return resp.data;
+  toast.error("Не предусмотрено в демо-режиме");
 };
