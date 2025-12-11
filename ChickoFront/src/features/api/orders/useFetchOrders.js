@@ -1,8 +1,6 @@
 ﻿import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
-import {API_BASE} from "../../../shared/config";
 import {QueryKeys} from "../keys";
-import toast from "react-hot-toast";
+import {MockOrders} from "../../../shared/MockData/MockOrders";
 
 export function useFetchOrders() {
   return useQuery({
@@ -16,7 +14,8 @@ export function useFetchOrders() {
 
 
 const getOrders = async () => {
-  const token = JSON.parse(localStorage.getItem("User")).token;
-  const resp = await axios.get(API_BASE + 'orders', { headers: {"Authorization" : `Bearer ${token}`}});
-  return resp.data ?? toast.success("Ожидайте");
+  // const token = JSON.parse(localStorage.getItem("User")).token;
+  // const resp = await axios.get(API_BASE + 'orders', { headers: {"Authorization" : `Bearer ${token}`}});
+  // return resp.data ?? toast.success("Ожидайте");
+  return MockOrders;
 }; 
