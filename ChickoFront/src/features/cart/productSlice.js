@@ -17,6 +17,7 @@ export const productSlice = createSlice({
   reducers: {
     setProduct: (state, data) => {
       let item = data.payload
+      state.value.id = item.id
       state.value.name = item.name;
       state.value.description = item.description;
       state.value.price = item.price;
