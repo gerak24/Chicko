@@ -1,4 +1,4 @@
-﻿import {getCoreRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
+import {getCoreRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
 import React from "react";
 import styles from "./ordersTableData.module.scss";
 import {usePayOrder} from "../api/orders/usePayOrder";

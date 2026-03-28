@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import styles from './CatalogProduct.module.scss'
 import {useDispatch} from 'react-redux'
 import {setNomenc} from "../../../../features/cart/productSlice";

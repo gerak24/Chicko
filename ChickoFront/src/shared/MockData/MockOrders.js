@@ -1,4 +1,4 @@
-﻿export const MockOrders = [
+export const MockOrders = [
   {
     "number": 1,
     "sum": 1310,

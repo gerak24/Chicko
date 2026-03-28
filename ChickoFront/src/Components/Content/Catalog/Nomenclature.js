@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import styles from './Catalog.module.scss'
 import {useFetchProduction} from "../../../features/api/products/useFetchProduction";
 import Loader from "../../../shared/Loader/Loader";
