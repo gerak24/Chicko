@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {flexRender} from "@tanstack/react-table";
 import useOrdersTable from "../../../features/data/useOrdersTable";
 import {useFetchOrders} from "../../../features/api/orders/useFetchOrders";

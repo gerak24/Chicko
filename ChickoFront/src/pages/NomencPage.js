@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Layout from "../Components/Layout/Layout";
 import Main from "../Components/Main/Main";
 import ManagerFooter from "../Components/Footer/ManagerFooter";
