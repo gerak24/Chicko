@@ -1,5 +1,6 @@
 ﻿using ChickoBack.Application.Commands.Product;
 using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using ChickoBack.Entitites;
 using Microsoft.EntityFrameworkCore;
 
@@ -57,13 +58,8 @@ public class ProductCommandsHandler(DataContext dbContext)
         return "Продукт создан";
     }
 
-    public IEnumerable<Product> GetDeletedProducts()
-    {
-        return dbContext.Products.Where(x => x.IsDeleted == true);
-    }
+    public IEnumerable<Product> GetDeletedProducts() => dbContext.Products.Where(x => x.IsDeleted == true).ToList();
 
-    public IEnumerable<Product> GetProducts()
-    {
-        return dbContext.Products.Where(x => x.IsDeleted != true);
-    }
+    public IEnumerable<Product> GetProducts(bool showDeleted = false) =>
+        showDeleted ? dbContext.Products : dbContext.Products.Where(x => x.IsDeleted != true).ToList();
 }

@@ -1,6 +1,6 @@
 ﻿using ChickoBack.Application.Commands.Product;
 using ChickoBack.Application.Handlers;
-using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,12 +13,26 @@ public class ProductsController(DataContext dbContext) : ApiController
 
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult GetProducts()
+    public IActionResult GetProducts(bool showDeleted = false)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(Handler.GetProducts());
+        return Ok(Handler.GetProducts(showDeleted));
+    }
+
+    [HttpGet("[action]")]
+    [AllowAnonymous]
+    public IActionResult GetText()
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        Thread.Sleep(7000);
+        return Ok(new
+        {
+            text1 = "ВРЕМЯ РАБОТЫ: Ежедневно \n с 12.00 до 22.00",
+            text2 = "Chicko - Вкус Кореи \n  +7(863) 301 - 35 - 00",
+        });
     }
 
     [HttpGet("[action]")]

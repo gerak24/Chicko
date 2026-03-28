@@ -11,8 +11,8 @@ const ManagerHeader = () => {
                         <i className="fas fa-sign-out-alt"></i>
                     </HeaderButt>
                 </div>
-                <HeaderButt title={'Номенклатура'} route={'/auth/nomenc'}/>
-                <HeaderButt title={'Заказы'} route={'/auth/orders'}/>
+                <HeaderButt title={'Номенклатура'} route={'/nomenc'}/>
+                <HeaderButt title={'Заказы'} route={'/orders'}/>
             </div>
         </div>
     );

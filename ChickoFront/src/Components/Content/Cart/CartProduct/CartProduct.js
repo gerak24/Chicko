@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 
 const CartProduct = ({item}) => {
     const {id, name, amount, price, image} = item;
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     return (
         <div className={styles.content_wrapper}>
             <div className={styles.product_title}>{name}</div>
@@ -15,10 +15,10 @@ const CartProduct = ({item}) => {
                 <div>В корзине: {amount}</div>
             </div>
             <div className={styles.product_buttons_wrapper}>
-                <div id={id} className={styles.product_button} onClick={() => dispath(addToCart(item))}>
+                <div id={id} className={styles.product_button} onClick={() => dispatch(addToCart(item))}>
                     <i className="fas fa-plus"></i>
                 </div>
-                <div id={id} className={styles.product_button} onClick={() => dispath(removeFromCart(item))}>
+                <div id={id} className={styles.product_button} onClick={() => dispatch(removeFromCart(item))}>
                     <i className="fas fa-minus"></i>
                 </div>
                 <div className={styles.product_price}>{price * amount} руб.</div>

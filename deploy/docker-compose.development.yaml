@@ -4,7 +4,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      chicko_web:
+      web:
     ports:
       - "80:80"
     command:
@@ -45,6 +45,21 @@ services:
       start_period: 30s
       timeout: 10s
 
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      postgres:
+      web:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=chicko_web"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.localhost`)"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+
   management-api:
     image: hub.gerak/chicko/management:${PROJECT_VARIANT}
     build:
@@ -57,7 +72,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-        restart: true
     deploy:
       replicas: 1
       resources:
@@ -76,10 +90,10 @@ services:
       - "salt=${HASH_SALT}"
       - "ConnectionStrings:redis=redis"
     networks:
-      chicko_web:
+      web:
         aliases:
           - manager.${HOST_BASE}
-      postgres:
+      postgres: 
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.http_${PROJECT_NAME}_management.rule=HostRegexp(`${HOST_BASE}`) && (PathPrefix(`/api`))"
@@ -118,5 +132,5 @@ volumes:
   node_cache:
     
 networks:
-  chicko_web:
+  web:
   postgres:

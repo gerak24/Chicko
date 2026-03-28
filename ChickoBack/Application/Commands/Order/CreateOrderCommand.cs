@@ -2,4 +2,4 @@
 
 namespace ChickoBack.Application.Commands.Order;
 
-public record CreateOrderCommand(IEnumerable<OrderProduct> Products, string Customer, string Contact);
+public record CreateOrderCommand(IEnumerable<OrderProduct> Products, string Customer, string Contact, string? Comment);

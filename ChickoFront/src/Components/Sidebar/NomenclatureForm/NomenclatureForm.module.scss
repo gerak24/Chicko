@@ -12,7 +12,7 @@ textarea {
   height: inherit;
   align-items: center;
   justify-content: center;
-  max-height: 550px;
+  max-height: 100vh;
 }
 
 .title {
@@ -25,7 +25,29 @@ textarea {
   margin-bottom: 5px;
 }
 
+.box_wrapper {
+  width: 90%;
+  display: flex;
+  align-items:  center;
+  justify-content: start;
+}
+
+.box{
+  background: #cfcfcf;
+  box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 1px solid #FFFFFF;
+  accent-color: #c84fff;
+  width: 20px;
+  height: 20px;
+}
+
+.text{
+  @include medium_text;
+}
+
 .form {
+  position: relative;
   margin-top: 5px;
   padding: 5px;
   border-radius: 5px;
@@ -34,6 +56,17 @@ textarea {
   flex-direction: column;
   align-items: center;
   max-width: 100%;
+}
+
+.clear {
+  @include button;
+  border-radius: 35%;
+  position: absolute;
+  height: min-content;
+  width:  min-content;
+  font-weight: bold;
+  right: 2%;
+  bottom: 2%;
 }
 
 .button {

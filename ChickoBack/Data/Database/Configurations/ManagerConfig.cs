@@ -1,12 +1,11 @@
 ﻿using ChickoBack.Application.Helpers;
 using ChickoBack.Entitites;
-using ChickoBack.Entitites.Orders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ChickoBack.Data;
+namespace ChickoBack.Data.Database.Configurations;
 
-public sealed class DataContext(DbContextOptions<DataContext> options, IConfiguration configuration)
-    : DbContext(options)
+public class ManagerConfig(IConfiguration configuration) : DomainObjectConfig<Manager>
 {
     private readonly string _ownerLogin = configuration["adminLogin"] ??
                                           throw new BusinessException("Не задан логин администратора в конфигурации");
@@ -17,14 +16,15 @@ public sealed class DataContext(DbContextOptions<DataContext> options, IConfigur
     private readonly string _salt = configuration["salt"] ??
                                     throw new BusinessException("В конфигурации не задана соль для паролей");
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        builder.Entity<Manager>().HasData(new
-            { Id = Guid.NewGuid(), Login = _ownerLogin, PassHash = Hasher.Create(_ownerPass, _salt) });
-        builder.Entity<Order>().OwnsMany(x => x.Products);
-    }
 
-    public DbSet<Manager> Managers { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Order> Orders { get; set; }
+    public override void Configure(EntityTypeBuilder<Manager> builder)
+    {
+        base.Configure(builder);
+        builder.ToTable("Managers");
+        
+        builder.Property(x => x.Login);
+        builder.Property(x => x.PassHash);
+
+        builder.HasData(new Manager(Guid.NewGuid(), _ownerLogin, Hasher.Create(_ownerPass, _salt)));
+    }
 }

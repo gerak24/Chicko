@@ -1,12 +1,12 @@
 ﻿using ChickoBack.Application.Commands.Manager;
 using ChickoBack.Application.Handlers;
 using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChickoBack.Controllers;
 
-[Authorize]
 public class ManagerController(DataContext dbContext, IConfiguration configuration) : ApiController
 {
     private ManagerCommandsHandler Handler { get; } = new(dbContext, configuration);

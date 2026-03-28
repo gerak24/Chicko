@@ -1,6 +1,6 @@
 ﻿using ChickoBack.Application.Commands.Order;
 using ChickoBack.Application.Handlers;
-using ChickoBack.Data;
+using ChickoBack.Data.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,8 +29,8 @@ public class OrdersController(DataContext dbContext, IConfiguration configuratio
 
         return Ok(Handler.GetOrders());
     }
-    
-    
+
+
     [HttpGet("{orderId:guid}")]
     public IActionResult GetOrder(Guid orderId)
     {
@@ -39,7 +39,27 @@ public class OrdersController(DataContext dbContext, IConfiguration configuratio
 
         return Ok(Handler.GetOrder(orderId));
     }
-    
+
+
+    [HttpPost("[action]/{orderId:guid}")]
+    public async Task<IActionResult> PayOrder(Guid orderId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(await Handler.PayOrder(orderId));
+    }
+
+
+    [HttpPost("[action]/{orderId:guid}")]
+    public async Task<IActionResult> PassOrder(Guid orderId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(await Handler.PassOrder(orderId));
+    }
+
     [HttpGet("[action]/{num:int}")]
     [AllowAnonymous]
     public IActionResult GetOrderByNum(int num)

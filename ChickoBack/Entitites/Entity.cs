@@ -2,10 +2,11 @@
 
 public abstract class Entity
 {
-    protected Entity(Guid id)
+    public Guid Id { get; init; }
+
+    protected Entity() // EF migrations building
     {
-        Id = id;
     }
 
-    public Guid Id { get; set; }
+    protected Entity(Guid id) => Id = id;
 }
