@@ -10,7 +10,6 @@
 .logo_img {
   padding: 5px;
   border-radius: 40%;
-  height: 100%;
   width: 100%;
   object-fit: contain;
 }
@@ -19,5 +18,12 @@
   .logo_container {
     margin: 5px;
     width: 65%;
+  }
+}
+
+@media (max-height: 1280px) {
+  .logo_img {
+    margin: 5px;
+    width: 70%;
   }
 }
